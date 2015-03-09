@@ -1,0 +1,121 @@
+# depslib dependency file v1.0
+1402563386 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\main.c
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+	"windows.h"
+
+1402498144 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	"usb-comm.h"
+
+1402491962 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\usb-comm.h
+	<stdio.h>
+	"libusb.h"
+
+1309988946 g:\lavoro\_libraries\libusb\libusb_2011.07.06\include\libusb-1.0\libusb.h
+	<stdint.h>
+	<sys/types.h>
+	<time.h>
+	<limits.h>
+	<sys/time.h>
+	<windows.h>
+
+1402495484 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\usb-comm.c
+	"usb-comm.h"
+
+1402493208 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\elisa3-lib.c
+	"elisa3-lib.h"
+
+1403070042 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1402573096 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1402554382 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\terminal.h
+
+1402563590 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\input.h
+	"elisa3-lib.h"
+
+1402563600 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+
+1402563492 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-1-robot\input.c
+	"input.h"
+	"windows.h"
+
+1403014564 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-1-robot\main.c
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1402667734 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-1-robot\terminal.h
+
+1402573282 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-1-robot\input.h
+	"elisa3-lib.h"
+
+1403014790 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-1-robot\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1402906298 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-1-robot\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1425548235 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1402573282 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\input.h
+	"elisa3-lib.h"
+
+1402667734 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\terminal.h
+
+1425548101 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\main.c
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1425547253 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1403679304 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1402573096 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\ihm_elisa-3_jollien_hug_maillard_sinniger\demosource\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
