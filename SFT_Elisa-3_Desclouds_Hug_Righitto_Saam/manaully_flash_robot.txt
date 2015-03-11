@@ -1,0 +1,7 @@
+avrdude -CC:"\Program Files (x86)\Arduino/hardware/tools/avr/etc/avrdude.conf" -v -patmega2560 -cstk500v2 -PCOM6 -b57600 -D -Uflash:w:C:\Users\PathToTheHexFileHere\theFile.hex:i 
+
+
+
+Warning: 
+	-don't forget to change the COM port with your actual COM port number
+	-If Arduino is not installed on the default directory you have to change the averdude.conf file path
