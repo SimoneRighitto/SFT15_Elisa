@@ -1,0 +1,150 @@
+# depslib dependency file v1.0
+1402919624 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-4-robots\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1402919624 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-4-robots\terminal.h
+
+1402919622 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-4-robots\input.h
+	"elisa3-lib.h"
+
+1403070042 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1402573096 g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1402919624 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-4-robots\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1403016332 source:g:\lavoro\local-repo\elisaiii-working\pc-side-elisa3-library-4-robots\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1416214526 source:c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library-4-robots\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1416214527 c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library-4-robots\input.h
+	"elisa3-lib.h"
+
+1416214518 c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1416214518 c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1416214527 c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library-4-robots\terminal.h
+
+1416214527 source:c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library-4-robots\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1416214527 source:c:\users\marcel\desktop\ihm\elisa-3_pc-side\pc-side-elisa3-library-4-robots\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1416816562 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library-4-robots\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1416214527 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library-4-robots\input.h
+	"elisa3-lib.h"
+
+1416214518 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1416214518 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1416214527 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library-4-robots\terminal.h
+
+1416214527 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library-4-robots\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1417423087 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side\pc-side-elisa3-library-4-robots\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1416816562 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-auto_select_robot\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1416214527 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-auto_select_robot\input.h
+	"elisa3-lib.h"
+
+1416214518 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1416214518 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1416214527 c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-auto_select_robot\terminal.h
+
+1416214527 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-auto_select_robot\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
+1421048784 source:c:\users\marcel\dropbox\heig-vd\ihm\elisa3-contamination\pc_side\elisa-3_pc-side_auto_select_robot\pc-side-elisa3-auto_select_robot\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+	<windows.h>
+
