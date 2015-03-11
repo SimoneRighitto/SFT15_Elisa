@@ -62,12 +62,12 @@ void handleKeyboardInput() {
             } else if (GetKeyState (VK_UP) < 0) {
                 robLSpeed = current_speed;
                 robRSpeed = current_speed;
-            } else if (GetKeyState (0x4d) < 0) {
+            } else if (GetKeyState (0x4d) < 0) { //m key
                 current_speed += 5;
                 if(current_speed > 100) {
                     current_speed = 100;
                 }
-            } else if (GetKeyState (0x4e) < 0) {
+            } else if (GetKeyState (0x4e) < 0) { //n key
                 current_speed -= 5;
                 if(current_speed < -100) {
                     current_speed = -100;
