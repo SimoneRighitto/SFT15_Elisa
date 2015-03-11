@@ -15,9 +15,6 @@ extern char robRedLed, robGreenLed, robBlueLed;
 extern unsigned char robFlagsTx;
 extern unsigned char obstacleAvoid, cliffAvoid, irOn, tvOn, sleepOn, smallLedsOn;
 extern unsigned char exitProg;
-
-extern int goEvil;
-
 #if defined(__linux__) || defined(__APPLE__)
 int ch=0;
 #endif
@@ -61,29 +58,17 @@ void handleKeyboardInput() {
                 robLSpeed = current_speed;
                 robRSpeed = 0;
             } else if (GetKeyState (VK_DOWN) < 0) {
-                if(goEvil==1){
-                robLSpeed = current_speed;
-                robRSpeed = current_speed;
-                }
-                else{
                 robLSpeed = -current_speed;
                 robRSpeed = -current_speed;
-                }
             } else if (GetKeyState (VK_UP) < 0) {
-                if(goEvil==1){
-                robLSpeed = -current_speed;
-                robRSpeed = -current_speed;
-                }
-                else{
                 robLSpeed = current_speed;
                 robRSpeed = current_speed;
-                }
-            } else if (GetKeyState (0x4d) < 0) { //m key
+            } else if (GetKeyState (VK_ADD) < 0) {
                 current_speed += 5;
                 if(current_speed > 100) {
                     current_speed = 100;
                 }
-            } else if (GetKeyState (0x4e) < 0) { //n key
+            } else if (GetKeyState (VK_SUBTRACT) < 0) {
                 current_speed -= 5;
                 if(current_speed < -100) {
                     current_speed = -100;
