@@ -36,3 +36,27 @@
 	"terminal.h"
 	"input.h"
 
+1403070282 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-library-4-robots\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	"terminal.h"
+	"input.h"
+
+1403679304 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-library\elisa3-lib.h
+	<stdio.h>
+	<sys/types.h>
+	<math.h>
+	<unistd.h>
+	"usb-comm.h"
+
+1402573096 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-library\usb-comm.h
+	<stdio.h>
+
+1402919624 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-library-4-robots\terminal.h
+
+1402919622 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-library-4-robots\input.h
+	"elisa3-lib.h"
+

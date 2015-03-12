@@ -53,8 +53,8 @@ void printHelp() {
         printf("************\n\r");
         printf("\n\rCURRENT ROBOT: 0 to 3 (the current robot controlled through keyboard)\n\r");
         printf("MOVEMENT: when no key is pressed the speed sent to robot is 0\n\r");
-        printf("+: increase speed used to control the robot\n\r");
-        printf("-: decrease speed used to control the robot\n\r");
+        printf("m: increase speed used to control the robot\n\r");
+        printf("n: decrease speed used to control the robot\n\r");
         printf("Arrow up: both motors forward\n\r");
         printf("Arrow down: both motors backward\n\r");
         printf("Arrow left: motor right forward\n\r");

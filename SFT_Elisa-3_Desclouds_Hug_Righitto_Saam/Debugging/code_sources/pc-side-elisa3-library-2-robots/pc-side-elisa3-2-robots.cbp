@@ -18,6 +18,9 @@
 				<Linker>
 					<Add library="..\pc-side-elisa3-library\bin\Release\libpc-side-elisa3-library.dll.a" />
 				</Linker>
+				<ExtraCommands>
+					<Add after="cp bin/Debug/pc-side-elisa3-2-robots.exe ../../" />
+				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/pc-side-elisa3-4-robots" prefix_auto="1" extension_auto="1" />
