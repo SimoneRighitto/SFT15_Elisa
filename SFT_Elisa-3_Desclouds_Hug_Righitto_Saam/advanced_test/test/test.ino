@@ -11,16 +11,7 @@
 #include "sensors.h"
 #include "irCommunication.h"
 
-void setup() {
-  // put your setup code here, to run once:
-
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-  
-  
-                                       int state = 0;
+  int state = 0;
                                        unsigned long int fredStartTime;
                                        unsigned long int fredEndTime;
 
@@ -29,6 +20,11 @@ void loop() {
 	unsigned int i=0;
 	unsigned int currRand=0, currRand2=0;
 	float targetAngle=0;
+
+void setup() {
+  // put your setup code here, to run once:
+
+    
 
 	initPeripherals();
 
@@ -39,6 +35,18 @@ void loop() {
 	startTime = getTime100MicroSec();
 
 	speedStepCounter = getTime100MicroSec();
+
+      
+
+}
+
+                               
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  
+  
+  
 
 /*
 	unsigned int j=0;
@@ -284,7 +292,7 @@ void loop() {
                                                   setRightSpeed(15);
                                                   setLeftSpeed(-15);
                                                   fredEndTime = getTime100MicroSec();
-                                                  if ((fredEndTime-fredStartTime) >= (PAUSE_10_SEC)) {
+                                                  if ((fredEndTime-fredStartTime) >= (PAUSE_2_SEC)) {
                                                     state=0;
                                                     fredStartTime = getTime100MicroSec();
                                                   }
