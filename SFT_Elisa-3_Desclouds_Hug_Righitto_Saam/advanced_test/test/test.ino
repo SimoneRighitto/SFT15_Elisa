@@ -20,6 +20,9 @@ void loop() {
   // put your main code here, to run repeatedly:
   
   
+                                       int state = 0;
+                                       unsigned long int fredStartTime;
+                                       unsigned long int fredEndTime;
 
 	unsigned long int startTime = 0, endTime = 0, turnOffLedsTime = 0;
 	unsigned char prevSelector=0;
@@ -240,17 +243,54 @@ void loop() {
 					break;
             
 			case 4:	// random colors on RGB leds; small green leds turned on
-					GREEN_LED0_ON;
-					GREEN_LED1_ON;
-					GREEN_LED2_ON;
-					GREEN_LED3_ON;
-					GREEN_LED4_ON;
-					GREEN_LED5_ON;
-					GREEN_LED6_ON;
-					GREEN_LED7_ON;
-					updateRedLed(pwm_red);
-					updateGreenLed(pwm_green);
-					updateBlueLed(pwm_blue);
+
+
+                                                handleMotorsWithSpeedController();
+                                              
+                                              setRightSpeed(15);
+                                              setLeftSpeed(15);
+                                                  
+                                              switch(state) {
+                                                case 0:
+                                                  updateRedLed(0);
+                                                  updateGreenLed(0);
+                                                  updateBlueLed(254);
+                                                  setRightSpeed(15);
+                                                  setLeftSpeed(15);
+                                                  fredEndTime = getTime100MicroSec();
+                                                  if ((fredEndTime-fredStartTime) >= (PAUSE_2_SEC)) {
+                                                    state=1;
+                                                    fredStartTime = getTime100MicroSec();
+                                                  }
+                                                break;
+                                                
+                                                case 1:
+                                                  updateRedLed(0);
+                                                  updateGreenLed(254);
+                                                  updateBlueLed(0);
+                                                  setRightSpeed(-15);
+                                                  setLeftSpeed(-15);
+                                                  fredEndTime = getTime100MicroSec();
+                                                  if ((fredEndTime-fredStartTime) >= (PAUSE_2_SEC)) {
+                                                    state=2;
+                                                    fredStartTime = getTime100MicroSec();
+                                                  }
+                                                break;
+                                                
+                                                case 2:
+                                                  updateRedLed(254);
+                                                  updateGreenLed(0);
+                                                  updateBlueLed(0);
+                                                  setRightSpeed(15);
+                                                  setLeftSpeed(-15);
+                                                  fredEndTime = getTime100MicroSec();
+                                                  if ((fredEndTime-fredStartTime) >= (PAUSE_10_SEC)) {
+                                                    state=0;
+                                                    fredStartTime = getTime100MicroSec();
+                                                  }
+                                                break;
+                                            }
+                                              
 					break;
              
 			case 5:	// random colors on RGB leds; obstacle avoidance enabled; robot start moving automatically
