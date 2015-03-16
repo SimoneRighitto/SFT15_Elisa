@@ -15,26 +15,23 @@
 
 
 ##Concepts##
-1) Contamination
+**1) Contamination**
 
 Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
-Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. *Définir quand le mode se remet à zéro.*
+Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
 
-2) Contamination contrôlée
+**2) Contamination contrôlée**
 
 Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le premier robot contaminé.
 
-3) A définir
+**3) Parade ?**
 
 ...
 
 ###Mode terminé###
 
-Pour chaque fin de mode, tous les robots se déplacent aléatoirement et vont se recharger aléatoirement.
+*Pour chaque fin de mode, tous les robots se déplacent aléatoirement et vont se recharger aléatoirement.*
 
 ###Batterie presque vide###
 
-Dès que la batterie d'un robot est presque déchargée, le robot qui son mode actuel et va se recharger. La couleur de ce mode doit être unique.
-
-
-*Répartition des tâches*
+*Dès que la batterie d'un robot est presque déchargée, le robot quitte son mode actuel et va se recharger. La couleur de ce mode doit être unique.*
