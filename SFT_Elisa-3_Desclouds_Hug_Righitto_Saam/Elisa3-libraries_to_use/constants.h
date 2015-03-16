@@ -39,8 +39,10 @@
 #define UART_BUFF_SIZE 256
 #endif
 
-#define LINE_IN_THR 400
-#define LINE_OUT_THR 450
+//#define LINE_IN_THR 400
+//#define LINE_OUT_THR 450
+#define LINE_IN_THR 550
+#define LINE_OUT_THR 700
 
 #define SPEED_STEP_DELAY 400					// based on adc interrupt that is about 104 us
 											// speed updated every SPEED_STEP_FREQ*104 us untill desired
