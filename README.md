@@ -1,17 +1,19 @@
 # SFT15 - Elisa3
 ----------------
 
+*Note : En italique se trouvent les points à confirmer avec l'équipe et avec leur faisabilité.*
+
 ##Arène##
 - Pour 7 robots (2 en réserve)
-- Dimensions:
+- Dimensions: 65 x 55 cm ?
 - Surface: blanche, aimantée et lisse
 - Disposition: verticale
 - Forme: rectangle avec des bords (barrières)
 
 
 ##Testé et a fonctionné##
-- Download d'un programme dans le robot
-- Contrôle du robot via l'antenne et le programme .. (CodeBlock)
+- Download d'un programme dans le robot (Arduino pour le robot-side)
+- Contrôle du robot via l'antenne et le programme .. (CodeBlock pour le PC-side)
 
 
 ##Concepts##
@@ -26,7 +28,7 @@ Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le 
 
 **3) Parade ?**
 
-...
+*Groupe de 4 robots qui font les mêmes déplacements.*
 
 ###Mode terminé###
 
