@@ -7,6 +7,10 @@
 
 
 ## Contenu
+
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/elisa3_mini.jpg"
+ alt="Elisa-3" title="Elisa-3" align="right" />
+ 
 1. [Introduction](#intro)
 2. [Objectifs de ce projet](#obj)
 3. [Elisa-3](#elisa)
@@ -77,19 +81,19 @@ Pour ce projet, nous avons utilisé :
 
 ## <a name="envi"></a>6. Environnement de développement
 
-GCtronic propose plusieurs IDE pour programmer les robots. Le seul que nous avons pu utiliser est **[Arduino](http://www.arduino.cc/)**. Malheureusement, la majorité des exemples de code sur le site du fournisseur ont été conçus pour AVR Studio. En outres, la traduction du code est pénible, car la librairie n’est pas complétement la même pour les deux IDE. Ainsi, la librairie "Avancée" doit être utilisée avec AVR Studio. Il s'est avéré impossible à la faire fonctionner en utilisant Arduino
+GCtronic propose plusieurs IDE pour programmer les robots. Le seul que nous avons pu utiliser est [Arduino](http://www.arduino.cc/). Malheureusement, la majorité des exemples de code sur le site du fournisseur ont été conçus pour AVR Studio. En outres, la traduction du code est pénible, car la librairie n’est pas complétement la même pour les deux IDE. Ainsi, la librairie "Avancée" doit être utilisée avec AVR Studio. Il s'est avéré impossible à la faire fonctionner en utilisant Arduino
 
-6.1 Installation du logiciel Arduino 
+### 6.1 Installation du logiciel Arduino 
 Cette page web du fournisseur explique comment installer Arduino : http://www.gctronic.com/doc/index.php/Elisa-3#Arduino_IDE_project  
 Après l’installation et la configuration de ce logiciel, il est nécessaire de faire un premier test. Pour ce faire, il est possible de suivre les instructions situées juste après la section qui décrit les modifications du fichier « boards.txt ».  
 L'utilisation des programmes développés pendant le cours nécessite l'utilisation de la librairie côté robot basique que nous avons modifié. Celle-ci a notamment dans le fichier constants.h des valeurs différentes pour LINE_IN_THR LINE_OUT_THR.  
 Comme indique « Tools=>Serial Port », il faut choisir le port COM pour établir la connexion avec le robot. Nous avons rencontré des problèmes avec les ports USB 3.0. En effet, la connexion au robot ne fonctionne pas avec ces derniers. Heureusement, nous avons constaté que ceci fonctionne avec les ports USB 2.0. Sur les ordinateurs portables de LeNovo, on peut utiliser les ports USB, identifiés en jaune (ports USB 2.0).   
 
-6.2 Développement avec l’antenne
+### 6.2 Développement avec l’antenne
 Pour qu’on puisse communiquer depuis un ordinateur avec les robots à l’aide de l’antenne, il faut tout d’abord installer quelques outils. Les procédures d’installation et de configuration sont décrites sur la page du fournisseur d’Elisa-3 : http://www.gctronic.com/doc/index.php/Elisa-3#PC_side  
 La mise en œuvre d’un projet « PC-Side » est pénible. C’est pourquoi nous avons préparé une version de CodeBlocks portable qui est déjà préconfigurée (voir le chapitre 9 « Contamination »). Il faut installer MinGW1 dans le dossier C:\MinGW. Lors de l’installation, il est nécessaire de sélectionner les compilateurs C et C++ de MinGW, afin de les installer. Lorsque la procédure est terminée, il faut brancher l’antenne sur un port USB 2.0.  En effet, le problème mentionné dans le chapitre précédent peut survenir. 
 
-6.3 Debugging avec l'antenne
+### 6.3 Debugging avec l'antenne
 La communication à l’aide de l’antenne permet aussi de récupérer des valeurs des capteurs des robots. En effet, les robots peuvent envoyer des valeurs au PC. Ceci permet de mieux comprendre ce qui se passe sur le robot. Le projet précompilé du fournisseur dans le chapitre « PC side » montre comment des valeurs peuvent être échangées. Une version exécutable de ce projet se trouve dans le dossier « Debugging\Debugging_avec_l_antenne » De plus, le sous-chapitre « Code du côté PC » du chapitre « Contamination » exploite cette fonctionnalité pour la récupération des états des batteries des robots.
 
 
@@ -98,7 +102,6 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 ### 7.1 Mode terminé
 #### 7.1.1 Concept
 *Pour chaque fin de mode, tous les robots se déplacent aléatoirement et vont se recharger aléatoirement.*
-*ici*
 
 ####7.1.2 Implémentation
 *ici*
@@ -107,7 +110,6 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 
 #### 7.2.1 Concept
 *Dès que la batterie d'un robot est presque déchargée, le robot quitte son mode actuel et va se recharger. La couleur de ce mode doit être unique.*
-*ici*
 
 ####7.2.2 Implémentation
 *ici*
@@ -117,7 +119,6 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 #### 7.3.1 Concept
 Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
 Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
-*ici*
 
 #### 7.3.2 Implémentation
 *ici*
@@ -126,7 +127,6 @@ Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le m
 
 #### 7.4.1 Concept
 Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le premier robot contaminé.
-*ici*
 
 #### 7.4.2 Implémentation
 *ici*
@@ -135,7 +135,6 @@ Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le 
 
 #### 7.5.1 Concept
 *Groupe de 4 robots qui font les mêmes déplacements de manière synchonisée.*
-*ici*
 
 #### 7.5.2 Implémentation
 *ici*
@@ -151,7 +150,6 @@ Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le 
 
 
 ## <a name="conlusion"></a>9. Conclusion
-
 *ici*
 
 
