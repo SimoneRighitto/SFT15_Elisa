@@ -95,31 +95,54 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 
 ## <a name="concept"></a>7. Fonctionnalités et implémentation
 
-**1) Mode terminé**
-
+### 7.1 Mode terminé
+#### 7.1.1 Concept
 *Pour chaque fin de mode, tous les robots se déplacent aléatoirement et vont se recharger aléatoirement.*
+*ici*
 
-**2) Rechargement**
+####7.1.2 Implémentation
+*ici*
 
+### 7.2 Rechargement
+
+#### 7.2.1 Concept
 *Dès que la batterie d'un robot est presque déchargée, le robot quitte son mode actuel et va se recharger. La couleur de ce mode doit être unique.*
+*ici*
 
-**3) Contamination**
+####7.2.2 Implémentation
+*ici*
 
+### 7.3 Contamination
+
+#### 7.3.1 Concept
 Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
 Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
+*ici*
 
-**4) Contamination contrôlée**
+#### 7.3.2 Implémentation
+*ici*
 
+### 7.4 Contamination contrôlée
+
+#### 7.4.1 Concept
 Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le premier robot contaminé.
+*ici*
 
-**5) Parade ?**
+#### 7.4.2 Implémentation
+*ici*
 
+### 7.5 Parade ?
+
+#### 7.5.1 Concept
 *Groupe de 4 robots qui font les mêmes déplacements de manière synchonisée.*
+*ici*
 
+#### 7.5.2 Implémentation
+*ici*
 
 ## <a name="place"></a>8. Mise en place finale
 
-###Arène
+### 8.1 Arène
 - Pour 7 robots (2 en réserve)
 - Dimensions: 65 x 55 cm 
 - Surface: blanche, aimantée et lisse
@@ -127,9 +150,9 @@ Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le 
 - Forme: rectangle avec des bords (barrières)
 
 
-
 ## <a name="conlusion"></a>9. Conclusion
 
+*ici*
 
 
 ## <a name="liens"></a>10. Liens
