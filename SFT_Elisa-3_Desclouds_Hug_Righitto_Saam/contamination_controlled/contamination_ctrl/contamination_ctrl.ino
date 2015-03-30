@@ -20,7 +20,7 @@ unsigned long int startTime = 0, endTime = 0;
 // contamination
 unsigned int contaminated = 0; // 0 neutral, 1 victime, 2 zombie
 
-const unsigned int DESIRED_BATTERY_LEVEL = 890;
+const unsigned int DESIRED_BATTERY_LEVEL = 800;
 
 const unsigned int LOW_SPEED=5;
 const unsigned int NORMAL_SPEED=10;
@@ -412,7 +412,7 @@ void loop() {
       if (getTime100MicroSec() > 50000) { // il faut inclure utility.h dans ce fichier!!!!
             if(batteryLevel < DESIRED_BATTERY_LEVEL || demoState != 1) {
               //handle the battery recharge
-              //rechargeBattery();
+              rechargeBattery();
             } else {
                // handle the contamination game
               contamination();

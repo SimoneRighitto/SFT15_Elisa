@@ -21,10 +21,11 @@
 #include "input.h"
 #include <windows.h>
 
-#define NUMBER_OF_ROBOTS 2
+#define NUMBER_OF_ROBOTS 3
+#define DESIRED_BATTERY_LEVEL 100
 
 // received from robots
-int robotAddress[NUMBER_OF_ROBOTS] = {3402,3296};  //3235 not working well
+int robotAddress[NUMBER_OF_ROBOTS] = {3296,3402, 3287};  //3235 not working well
 int gamePoolRobotAddresses[NUMBER_OF_ROBOTS];
 int gamePoolSize = 0; // number of non-charging robots
 unsigned int robProx[NUMBER_OF_ROBOTS][8];
@@ -77,7 +78,7 @@ int main(int argc, char *argv[]) {
     printf("Inspecting robots battery level\n");
     for (i=0, j=0; i<NUMBER_OF_ROBOTS; i++) {
         // at battery level 890 the robots are looking for a recharging station
-        if (getBatteryAdc(robotAddress[i]) > 100) {
+        if (getBatteryAdc(robotAddress[i]) > DESIRED_BATTERY_LEVEL) {
             gamePoolRobotAddresses[j] = robotAddress[i];
             gamePoolSize++;
             printf("Robot non-charging: %d \n", gamePoolRobotAddresses[j]);
