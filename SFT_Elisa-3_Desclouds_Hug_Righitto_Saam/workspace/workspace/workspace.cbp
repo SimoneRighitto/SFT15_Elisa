@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="workspace" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/workspace" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="include/adc.h" />
+		<Unit filename="include/behaviors.h" />
+		<Unit filename="include/constants.h" />
+		<Unit filename="include/eepromIO.h" />
+		<Unit filename="include/irCommunication.h" />
+		<Unit filename="include/ir_remote_control.h" />
+		<Unit filename="include/leds.h" />
+		<Unit filename="include/mirf.h" />
+		<Unit filename="include/motors.h" />
+		<Unit filename="include/nRF24L01.h" />
+		<Unit filename="include/ports_io.h" />
+		<Unit filename="include/sensors.h" />
+		<Unit filename="include/speed_control.h" />
+		<Unit filename="include/spi.h" />
+		<Unit filename="include/twimaster.h" />
+		<Unit filename="include/usart.h" />
+		<Unit filename="include/utility.h" />
+		<Unit filename="include/variables.h" />
+		<Unit filename="src/adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/behaviors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/eepromIO.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/irCommunication.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ir_remote_control.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/leds.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/mirf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/motors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/ports_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sensors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/speed_control.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/spi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/twimaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/usart.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/utility.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/variables.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
