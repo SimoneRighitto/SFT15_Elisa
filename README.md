@@ -1,7 +1,7 @@
 # SFT15 - Elisa3
 ----------------
 
-##Testé et a fonctionné
+## Testé et a fonctionné
 - Download d'un programme dans le robot (Arduino pour le robot-side)
 - Contrôle du robot via l'antenne et le programme .. (CodeBlock pour le PC-side)
 
@@ -142,6 +142,11 @@ Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le 
 ## <a name="place"></a>8. Mise en place finale
 
 ### 8.1 Arène
+
+#### Schéma de l'arène
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/schema_areneB.jpg"
+ alt="Arene" title="Arene" align="center" />
+
 - Pour 7 robots (2 en réserve)
 - Dimensions: 65 x 55 cm 
 - Surface: blanche, aimantée et lisse
