@@ -98,6 +98,11 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 
 
 ## <a name="concept"></a>7. Fonctionnalités et implémentation
+Bien que nous avions déjà reçu le code fonctionnel de la première partie du projet, nous avons décidé de remplacer la librairie utilisée par la nouvelle librairie fournie par GCtronic. En effet, la première librairie ne permettait malheureusement pas d'utiliser toutes les fonctionnalités énnoncée du robot (notamment le *cliff avoidance* et la communication entre les robots).
+
+Toutefois, nous nous sommes rapidemment rendus compte que le code existant ne fonctionnait pas avec la nouvelle librairie. Par conséquent, nous avons passé un temps considérable à comprendre la nouvelle librairie et à corriger le code pour le faire fonctionner.
+
+Dans ce chapitre, nous présentons chaque mode et son implémentation, ainsi que les difficultés rencontrées.
 
 ### 7.1 Mode terminé
 #### 7.1.1 Concept
