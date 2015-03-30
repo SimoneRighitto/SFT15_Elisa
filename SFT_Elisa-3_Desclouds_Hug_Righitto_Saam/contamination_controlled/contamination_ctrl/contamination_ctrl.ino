@@ -20,7 +20,7 @@ unsigned long int startTime = 0, endTime = 0;
 // contamination
 unsigned int contaminated = 0; // 0 neutral, 1 victime, 2 zombie
 
-const unsigned int DESIRED_BATTERY_LEVEL = 800;
+const unsigned int DESIRED_BATTERY_LEVEL = 100;
 
 const unsigned int LOW_SPEED=5;
 const unsigned int NORMAL_SPEED=10;
