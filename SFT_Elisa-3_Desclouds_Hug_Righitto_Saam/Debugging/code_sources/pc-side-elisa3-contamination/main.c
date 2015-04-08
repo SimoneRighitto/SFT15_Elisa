@@ -21,11 +21,12 @@
 #include "input.h"
 #include <windows.h>
 
-#define NUMBER_OF_ROBOTS 3
+#define NUMBER_OF_ROBOTS 4
 #define DESIRED_BATTERY_LEVEL 100
 
 // received from robots
-int robotAddress[NUMBER_OF_ROBOTS] = {3296,3402, 3287};  //3235 not working well
+int robotAddress[NUMBER_OF_ROBOTS] = {3296,3402, 3287, 3235};
+
 int gamePoolRobotAddresses[NUMBER_OF_ROBOTS];
 int gamePoolSize = 0; // number of non-charging robots
 unsigned int robProx[NUMBER_OF_ROBOTS][8];
@@ -66,6 +67,26 @@ void setFullBlue(address) {
     setGreen(address, robGreenLed);
 }
 
+void setFullGreen(address) {
+    printf("Set robot %d to green\n", address);
+    robRedLed = 0;
+    robBlueLed = 0;
+    robGreenLed = 100;
+    setRed(address, robRedLed);
+    setBlue(address, robBlueLed);
+    setGreen(address, robGreenLed);
+}
+
+void setFullYellow(address) {
+    printf("Set robot %d to yellow\n", address);
+    robRedLed = 80;
+    robBlueLed = 0;
+    robGreenLed = 100;
+    setRed(address, robRedLed);
+    setBlue(address, robBlueLed);
+    setGreen(address, robGreenLed);
+}
+
 
 int main(int argc, char *argv[]) {
 
@@ -94,10 +115,12 @@ int main(int argc, char *argv[]) {
 
     //startCommunication(gamePoolRobotAddresses, gamePoolSize);
 
+
     // firstly, set all robots to blue (victime)
     for(i=0; i<gamePoolSize; i++) {
         setFullBlue(gamePoolRobotAddresses[i]);
     }
+
 
     // chose the first contaminated robot (exclude charging robots)
     printf("Enter the address of the first contaminated robot : %d\n", gamePoolSize);
@@ -105,6 +128,8 @@ int main(int argc, char *argv[]) {
     scanf("%d", &firstContaminatedRobot);
     setFullRed(firstContaminatedRobot);
     Sleep(2000); // wait a little bit, if not, the messages may not have been received by the robots
+
+
 
     stopCommunication();
 	closeTerminal();
