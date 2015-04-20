@@ -17,20 +17,23 @@
 #include <string.h>
 #include <math.h>
 #include "elisa3-lib.h"
-#include "terminal.h"
-#include "input.h"
+//#include "terminal.h"
+//#include "input.h"
 #include <windows.h>
 
-#define NUMBER_OF_ROBOTS 4
-#define DESIRED_BATTERY_LEVEL 100
+//this fucking variable must be a power of 2
+#define NUM_ROBOTS 8
+
+#define DESIRED_BATTERY_LEVEL 10
+
 
 // received from robots
-int robotAddress[NUMBER_OF_ROBOTS] = {3296,3402, 3287, 3235};
+int robotAddress[NUM_ROBOTS] = {3296,3402, 3235, 3289, 3356,3287};
 
-int gamePoolRobotAddresses[NUMBER_OF_ROBOTS];
+int gamePoolRobotAddresses[NUM_ROBOTS];
 int gamePoolSize = 0; // number of non-charging robots
-unsigned int robProx[NUMBER_OF_ROBOTS][8];
-unsigned int robGround[NUMBER_OF_ROBOTS][4];
+unsigned int robProx[NUM_ROBOTS][8];
+unsigned int robGround[NUM_ROBOTS][4];
 
 // sent to robot
 char robLSpeed=0, robRSpeed=0;
@@ -90,14 +93,14 @@ void setFullYellow(address) {
 
 int main(int argc, char *argv[]) {
 
-    initTerminal(); // printf's work after this instruction only!!!
+    //initTerminal(); // printf's work after this instruction only!!!
 
     // exclude charging robots from the game
     printf("Start communication...\n");
-    startCommunication(robotAddress, NUMBER_OF_ROBOTS);
-    Sleep(500);
+   // startCommunication(robotAddress, NUM_ROBOTS);
+  //  Sleep(500);
     printf("Inspecting robots battery level\n");
-    for (i=0, j=0; i<NUMBER_OF_ROBOTS; i++) {
+    for (i=0, j=0; i<NUM_ROBOTS; i++) {
         // at battery level 890 the robots are looking for a recharging station
         if (getBatteryAdc(robotAddress[i]) > DESIRED_BATTERY_LEVEL) {
             gamePoolRobotAddresses[j] = robotAddress[i];
@@ -107,18 +110,19 @@ int main(int argc, char *argv[]) {
         }
     }
     //printf("Stop communication...\n");
-    Sleep(2000); // wait a little bit, if not, the messages may not have been received by the robots
+    //Sleep(2000); // wait a little bit, if not, the messages may not have been received by the robots
     //stopCommunication();
     //Sleep(1000); // wait a little bit, if not, the communication channels are not ready for the restart
     //printf("Communication stopped\n");
     printf("Game pool size: %d\n", gamePoolSize);
 
-    //startCommunication(gamePoolRobotAddresses, gamePoolSize);
+    startCommunication(gamePoolRobotAddresses, gamePoolSize);
 
 
     // firstly, set all robots to blue (victime)
     for(i=0; i<gamePoolSize; i++) {
         setFullBlue(gamePoolRobotAddresses[i]);
+        Sleep(100);
     }
 
 

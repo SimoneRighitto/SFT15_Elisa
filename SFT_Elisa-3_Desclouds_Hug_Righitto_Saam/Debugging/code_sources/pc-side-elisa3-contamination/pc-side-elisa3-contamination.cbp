@@ -14,9 +14,11 @@
 				<Option parameters="3245" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../pc-side-elisa3-library" />
 				</Compiler>
 				<Linker>
-					<Add library="..\pc-side-elisa3-library\bin\Release\libpc-side-elisa3-library.dll.a" />
+					<Add library="libpc-side-elisa3-library.dll.a" />
+					<Add directory="../pc-side-elisa3-library/bin/Release" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -30,17 +32,14 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="..\pc-side-elisa3-library\bin\Release\libpc-side-elisa3-library.dll.a" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="../pc-side-elisa3-library" />
 		</Compiler>
 		<Linker>
 			<Add library="libpc-side-elisa3-library.dll.a" />
-			<Add directory="../pc-side-elisa3-library/bin/Release" />
 		</Linker>
 		<ExtraCommands>
 			<Add after="cp bin/Debug/pc-side-elisa3-contamination.exe ../../" />
