@@ -117,30 +117,30 @@ Dans ce chapitre, nous présentons chaque mode et son implémentation, ainsi que
 Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
 Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
 
-<<<<<<< HEAD
 #### 7.2.2 Implémentation
 *ici*
-=======
-#### 7.3.2 Implémentation
+
+### 7.3 Communication entre les robots
+
+#### 7.3.1 Implémentation
 Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Nous avons rencontré un certain nombre de difficultés à faire cela. Une variable nommée NUMBER_ROBOTS ne changeait apparemment pas le nombre de robots auxquels nous pouvions communiquer. Nous avons essayé avec les valeurs 5 et 6 mais nous ne pouvions communiquer qu'avec 4 robots. 
 Après de nombreux tests effectués à d'autres endroits dans le code et même en essayant de modifier la bibliothèque fournie cela ne résolvait pas le problème. 
 Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. Nous avons donc réussi en initialisant la variable NUMBER_ROBOTS à 8 à faire fonctionner plus de 4 robots.
->>>>>>> origin/master
 
-### 7.3 Contamination contrôlée
+### 7.4 Contamination contrôlée
 
-#### 7.3.1 Concept
+#### 7.4.1 Concept
 Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le premier robot contaminé.
 
-#### 7.3.2 Implémentation
+#### 7.4.2 Implémentation
 *ici*
 
 ### 7.5 Parade ?
 
-#### 7.4.1 Concept
+#### 7.5.1 Concept
 *Groupe de 4 robots qui font les mêmes déplacements de manière synchonisée.*
 
-#### 7.4.2 Implémentation
+#### 7.5.2 Implémentation
 *ici*
 
 ## <a name="place"></a>8. Mise en place finale
