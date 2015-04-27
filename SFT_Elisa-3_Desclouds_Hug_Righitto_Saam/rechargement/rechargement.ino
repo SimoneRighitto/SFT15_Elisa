@@ -175,14 +175,14 @@ void loop() {
 				disableObstacleAvoidance();
 
 				demoEndTime = getTime100MicroSec();
-				/*if((demoEndTime-demoStartTime) >= (PAUSE_20_SEC)) {	// the robot seems to be blocked somehow
+				if((demoEndTime-demoStartTime) >= (PAUSE_30_SEC)) {	// the robot seems to be blocked somehow
 					// go back for a while
 					setRightSpeed(-20);
 					setLeftSpeed(-20);
 					demoStartTime = getTime100MicroSec();
 					demoState = 4;
 					break;
-				}*/
+				}
 
 				if(CHARGE_ON) {
 					outOfLine = 0;
@@ -245,18 +245,6 @@ void loop() {
 				} else {
 					setRightSpeed(15);
 					setLeftSpeed(15);
-                                        /*if ((getTime100MicroSec()-counterPerso) >= PAUSE_300_MSEC) {
-                                          counterPerso = getTime100MicroSec();
-                                          if (testBool == 1) {testBool = 0;}
-                                          else {testBool = 1;}
-                                        }
-                                        if (testBool == 1) {
-                                          setRightSpeed(15);
-					  setLeftSpeed(-5);
-                                        } else {
-                                          setRightSpeed(-5);
-					  setLeftSpeed(15);
-                                        }*/
 					//outOfLine = 0;
 					/*
 					if(CHARGE_ON) {
