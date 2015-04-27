@@ -28,7 +28,7 @@
 
 
 // received from robots
-int robotAddress[NUM_ROBOTS] = {3296,3402, 3235, 3289, 3356,3287};
+int robotAddress[NUM_ROBOTS] = {3296,3402, 3235, 3289, 3356,3287, 3307};
 
 int gamePoolRobotAddresses[NUM_ROBOTS];
 int gamePoolSize = 0; // number of non-charging robots
