@@ -35,3 +35,29 @@
 	"windows.h"
 	<ncurses.h>
 
+1427190880 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-final\input.c
+	"input.h"
+	"terminal.h"
+	"windows.h"
+	<ncurses.h>
+
+1427190880 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-final\input.h
+	"elisa3-lib.h"
+
+1427190880 c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-final\terminal.h
+
+1430153204 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-final\main.c
+	<stdio.h>
+	<sys/types.h>
+	<string.h>
+	<math.h>
+	"elisa3-lib.h"
+	<windows.h>
+
+1427190880 source:c:\users\righitz\documents\heig-vd\6semestre\sft\sft15_elisa\sft_elisa-3_desclouds_hug_righitto_saam\debugging\code_sources\pc-side-elisa3-final\terminal.c
+	"terminal.h"
+	"input.h"
+	<stdio.h>
+	"windows.h"
+	<ncurses.h>
+
