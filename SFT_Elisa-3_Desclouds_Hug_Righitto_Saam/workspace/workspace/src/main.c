@@ -101,15 +101,64 @@ void setup() {
 int danceStateReceived = 0;
 
 
+int h2=0;
+void handshake_2(){
+if (irCommDataAvailable()==1) {
+      //danceStateReceived = irCommReadData();
+      h2=irCommReadData();
+        if(h2==2){
+            setLEDcolor(0,255,255);
+            danceStateReceived=3;
+            handshake_3();
+        }
+      }
+
+}
+
+
+void handshake_3(){
+int i=0;
+for(i;i<1000;i++){
+    irCommTasks();
+    if (irCommDataSent() == 1) {
+        irCommSendData(3);
+
+      }
+}
+before();
+
+}
+
+int h2_2=0;
+void handshake_2_2(){
+
+    while(h2_2!=3){
+        irCommTasks();
+        if (irCommDataAvailable()==1) {
+      //danceStateReceived = irCommReadData();
+      h2_2=irCommReadData();
+        }
+
+       if (irCommDataSent() == 1) {
+        irCommSendData(2);
+      }
+    }
+    before();
+}
+
 //the arg is used to know if is a receiver or a sender robot (0:receiver, 1:senrer)
+int h1=0;
 void senseOtherRobots(int sender) {
   irCommTasks();
   switch(sender){
     case 0:
       if (irCommDataAvailable()==1) {
-      danceStateReceived = irCommReadData();
-      setLEDcolor(100,100,100);
-      sleep(8);
+      //danceStateReceived = irCommReadData();
+      h1=irCommReadData();
+        if(h1==1){
+            setLEDcolor(0,255,255);
+            handshake_2_2();
+        }
       }
       break;
 
@@ -117,6 +166,7 @@ void senseOtherRobots(int sender) {
        //turnOffGreenLeds();
        if (irCommDataSent() == 1) {
         irCommSendData(1);
+        handshake_2();
       }
       break;
     }
@@ -148,6 +198,16 @@ void setLEDcolor(unsigned char newRed, unsigned char newGreen, unsigned char new
     }
 }
 
+
+void before(){
+    danceStateReceived=3;
+
+    turnOnGreenLeds();
+    setLEDcolor(255,255,255); //red
+    setLeftSpeed(0);
+    setRightSpeed(0);
+}
+
 void dance(){
 
   switch(danceStateReceived){
@@ -159,14 +219,19 @@ void dance(){
     case 1:
       enableObstacleAvoidance();
 
-      setLEDcolor(255,255,0);
+      setLEDcolor(255,255,0); //blue
 
       setLeftSpeed(NORMAL_SPEED);
       setRightSpeed(NORMAL_SPEED);
       senseOtherRobots(1);
       break;
-    }
 
+    case 2:
+        //
+        break;
+    case 3:
+        break;
+  }
 }
 
 void loop() {
