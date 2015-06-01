@@ -122,9 +122,10 @@ void setup() {
 void checkStart() {
   //to be able to start with the pc antenna
   handleRFCommands();
-
-  if (pwm_red == 0 ) {
-    //danceStateReceived=1;
+  turnOnGreenLeds();
+  if (pwm_red == 0 && pwm_green == 255 && pwm_blue == 255) {
+    robotState=BEFORE_DANCE;
+    turnOffGreenLeds();
   }
 }
 
@@ -306,6 +307,7 @@ void dance_1() {
         setRightSpeed(0);
 
         robotState = DANCE_2;
+        dance_1_state=0;
 
       }
       break;
@@ -428,7 +430,8 @@ void dance_2() {
         setLeftSpeed(0);
         setRightSpeed(0);
 
-        robotState = BEFORE_DANCE;
+        robotState = INIT;
+        dance_2_state = 0;
 
       }
       break;
@@ -451,9 +454,9 @@ void loop() {
   //beforeDance();
   switch (robotState) {
     case INIT:
-      //checkStart();
+      checkStart();
       //manually starting
-      robotState = DANCE_2;
+      //robotState = DANCE_2;
       //robotState = DANCE_1;
       break;
     case BEFORE_DANCE:

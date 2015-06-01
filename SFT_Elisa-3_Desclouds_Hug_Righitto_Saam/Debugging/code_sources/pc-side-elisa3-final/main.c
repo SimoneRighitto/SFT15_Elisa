@@ -73,9 +73,9 @@ void setFullYellow(address) {
 int main(int argc, char *argv[]) {
 
     printf("\r\nInsert the robot address: ");
-    //scanf("%d", &robotAddress[0]);
+    scanf("%d", &robotAddress[0]);
 
-    robotAddress[0]=3289;
+    //robotAddress[0]=3289;
     printf("Start communication...\n");
     startCommunication(robotAddress, 1);
 
