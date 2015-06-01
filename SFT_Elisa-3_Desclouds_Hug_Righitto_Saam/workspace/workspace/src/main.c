@@ -32,6 +32,8 @@ const unsigned int BEFORE_DANCE = 0;
 const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
 
+unsigned long int currentTime = 0;
+unsigned long int start;
 
 void updateMotorSpeeds_2() {
   pwm_intermediate_right_desired = pwm_right_desired;
@@ -224,19 +226,32 @@ void rotate(int rotationDirection, unsigned int rotationSpeed) {
 
     case 0:
       setLeftSpeed(rotationSpeed);
-      setRightSpeed(0);
+      setRightSpeed(- rotationSpeed);
       break;
     case 1:
-      setLeftSpeed(0);
+      setLeftSpeed(- rotationSpeed);
       setRightSpeed(rotationSpeed);
       break;
   }
 }
 
-unsigned long int currentTime = 0;
-unsigned int dance_1_state = 0;
-unsigned long int start;
 
+//turnDirection : 0 --> clockwise ; 1 --> cunterclokwise
+void turn(int turnDirection, unsigned int turnSpeed) {
+  switch (turnDirection) {
+
+    case 0:
+      setLeftSpeed(turnSpeed);
+      setRightSpeed(0);
+      break;
+    case 1:
+      setLeftSpeed(0);
+      setRightSpeed(turnSpeed);
+      break;
+  }
+}
+
+unsigned int dance_1_state = 0;
 void dance_1() {
 
   switch (dance_1_state) {
@@ -253,7 +268,7 @@ void dance_1() {
       if (currentTime - start > PAUSE_2_SEC) {
         start = currentTime;
         setRandomColor();
-        rotate(1,HIGH_SPEED);
+        rotate(1, HIGH_SPEED);
         dance_1_state = 2;
 
       }
@@ -289,20 +304,136 @@ void dance_1() {
         setRandomColor();
         setLeftSpeed(0);
         setRightSpeed(0);
-        // updateMotorSpeeds();
-        dance_1_state = 5;
+
+        robotState = DANCE_2;
 
       }
       break;
   }
+}
 
+unsigned int dance_2_state = 0;
+void dance_2() {
 
+  switch (dance_2_state) {
+    case 0:
+      setRandomColor();
+      turn(0, HIGH_SPEED);
+      start = getTime100MicroSec();
+      dance_2_state = 1;
+      break;
+    case 1:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        turn(0, -HIGH_SPEED);
+        dance_2_state = 2;
 
-  //rotate(PAUSE_2_SEC, 0, NORMAL_SPEED); //360 deg rotation
-  //setLeftSpeed(-LOW_SPEED);
-  //setRightSpeed(-LOW_SPEED);
-  //rotate(PAUSE_1_SEC,1, HIGH_SPEED); // 180 flip
+      }
+      break;
+    case 2:
 
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+
+        start = currentTime;
+        setRandomColor();
+        turn(1, HIGH_SPEED);
+
+        dance_2_state = 3;
+
+      }
+      break;
+    case 3:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        turn(1, -HIGH_SPEED);
+        dance_2_state = 4;
+
+      }
+      break;
+    case 4:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        setLeftSpeed(NORMAL_SPEED);
+        setRightSpeed(NORMAL_SPEED);
+
+        dance_2_state = 5;
+
+      }
+      break;
+    case 5:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        start = currentTime;
+        setRandomColor();
+        rotate(0, NORMAL_SPEED);
+        dance_2_state = 6;
+
+      }
+      break;
+    case 6:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        turn(0, HIGH_SPEED);
+        dance_2_state = 7;
+
+      }
+      break;
+    case 7:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        turn(0, -HIGH_SPEED);
+        dance_2_state = 8;
+
+      }
+      break;
+    case 8:
+
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+
+        start = currentTime;
+        setRandomColor();
+        turn(1, HIGH_SPEED);
+
+        dance_2_state = 9;
+
+      }
+      break;
+    case 9:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        turn(1, -HIGH_SPEED);
+        dance_2_state = 10;
+
+      }
+      break;
+    case 10:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setRandomColor();
+        setLeftSpeed(0);
+        setRightSpeed(0);
+
+        robotState = BEFORE_DANCE;
+
+      }
+      break;
+
+  }
 }
 
 void loop() {
@@ -322,7 +453,7 @@ void loop() {
     case INIT:
       //checkStart();
       //manually starting
-      robotState = BEFORE_DANCE;
+      robotState = DANCE_2;
       //robotState = DANCE_1;
       break;
     case BEFORE_DANCE:
@@ -334,7 +465,7 @@ void loop() {
       //robotState = DANCE_2;
       break;
     case DANCE_2:
-      //do nothing right now
+      dance_2();
       break;
   }
 
