@@ -31,6 +31,10 @@ const unsigned int INIT = 99;
 const unsigned int BEFORE_DANCE = 0;
 const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
+const unsigned int BASE_MODE = 3;
+
+//communication constatns
+unsigned char NO_DATA = 0;
 
 unsigned long int currentTime = 0;
 unsigned long int start;
@@ -96,7 +100,7 @@ void setup() {
   initPeripherals();
   calibrateSensors();
   initBehaviors();
-  //irCommInit();
+  irCommInit();
 
   speedStepCounter = getTime100MicroSec();
 
@@ -439,10 +443,82 @@ void dance_2() {
   }
 }
 
-void loop() {
+void sendToRobots(unsigned char toSend) {
+  if (irCommDataSent() == 1) {
+    irCommSendData(toSend);
+  }
+  irCommTasks();
+}
 
+unsigned char senseCommunication() {
+  unsigned char received = NO_DATA;
+
+  irCommTasks();
+  if (irCommDataAvailable() == 1) {
+    received = irCommReadData();
+  }
+
+  return received;
+}
+
+
+/*
+* Basic robot bheaviours: random moving whit obstacle avoidance and random RBG colors and auto charghing
+*/
+unsigned long int startChangeColor = 0;
+unsigned int base_state=0;
+unsigned char received=NO_DATA;
+void baseMode(){
+
+//if(batteryLevel < DESIRED_BATTERY_LEVEL ) {
+              //handle the battery recharge
+              //rechargeBattery();
+
+//}
+//else{
+
+    switch(base_state){
+
+case 0:
+        setRandomColor();
+		enableObstacleAvoidance();
+		setLeftSpeed(NORMAL_SPEED);
+		setRightSpeed(NORMAL_SPEED);
+		base_state=1;
+        break;
+case 1:
+
+
+    currentTime = getTime100MicroSec();
+
+      if((currentTime -startChangeColor) >= (PAUSE_2_SEC)) {
+        startChangeColor = currentTime;
+        setRandomColor();
+
+      }
+
+      //handle other robot contact
+      sendToRobots(1);
+      received = senseCommunication();
+
+      if(received!=NO_DATA){
+        setLEDcolor(255,0,255);
+        robotState = BEFORE_DANCE;
+        base_state=0;
+      }
+
+      }
+//}
+
+}
+
+void loop() {
+  readBatteryLevel();
+  
   //this one is necessary, if not present the proximity sensors will not work !  YOU HAVE TO CALL IT ONCE INSIDE THE CODE, NOT OBLIGATORY HERE, you can call it in a different function
-  //irCommTasks();
+  irCommTasks();
+
+
   /*
     if(getTime100MicroSec()-startTime > PAUSE_10_SEC){
       setRandomColor();
@@ -454,10 +530,9 @@ void loop() {
   //beforeDance();
   switch (robotState) {
     case INIT:
-      checkStart();
+      //checkStart();
       //manually starting
-      //robotState = DANCE_2;
-      //robotState = DANCE_1;
+      robotState = BASE_MODE;
       break;
     case BEFORE_DANCE:
       beforeDance();
@@ -470,6 +545,9 @@ void loop() {
     case DANCE_2:
       dance_2();
       break;
+    case BASE_MODE:
+        baseMode();
+        break;
   }
 
   updateMotorSpeeds();
