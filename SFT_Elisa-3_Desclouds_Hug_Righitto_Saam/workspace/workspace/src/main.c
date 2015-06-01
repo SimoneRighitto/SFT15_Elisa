@@ -21,8 +21,8 @@
 unsigned long int startTime = 0, endTime = 0;
 
 
-const unsigned int LOW_SPEED = 10;
-const unsigned int NORMAL_SPEED = 15;
+const unsigned int LOW_SPEED = 8;
+const unsigned int NORMAL_SPEED = 13;
 const unsigned int HIGH_SPEED = 20;
 
 //robot state constants
@@ -33,7 +33,12 @@ const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
 
 
+void updateMotorSpeeds_2() {
+  pwm_intermediate_right_desired = pwm_right_desired;
+  pwm_intermediate_left_desired = pwm_left_desired;
 
+  handleMotorsWithSpeedController();
+}
 
 void updateMotorSpeeds()  {
   if ((getTime100MicroSec() - speedStepCounter) >= SPEED_STEP_DELAY) {
@@ -89,7 +94,7 @@ void setup() {
   initPeripherals();
   calibrateSensors();
   initBehaviors();
-  irCommInit();
+  //irCommInit();
 
   speedStepCounter = getTime100MicroSec();
 
@@ -150,7 +155,6 @@ void setRandomColor() {
 unsigned int wait_state = 0;
 unsigned long int waitStart;
 bool wait(unsigned long int time) {
-
   switch (wait_state) {
     case 0:
       waitStart = getTime100MicroSec();
@@ -164,7 +168,7 @@ bool wait(unsigned long int time) {
 
         return false;
       }
-    break;
+      break;
 
   }
 }
@@ -176,77 +180,119 @@ unsigned int beforeGreenLedState = 0;
 void beforeDance() {
 
 
-  int beforeDanceDelay[] = {PAUSE_2_SEC, PAUSE_1_SEC, PAUSE_750_MSEC, PAUSE_500_MSEC, PAUSE_300_MSEC, PAUSE_200_MSEC, PAUSE_100_MSEC, (PAUSE_10_MSEC * 5)};
+  int beforeDanceDelay[] = {PAUSE_1_SEC, PAUSE_750_MSEC, PAUSE_500_MSEC, PAUSE_300_MSEC, PAUSE_300_MSEC, PAUSE_300_MSEC, PAUSE_250_MSEC, PAUSE_250_MSEC, PAUSE_100_MSEC};
 
 
+  if (index >= (sizeof(beforeDanceDelay) / sizeof(int))) {
+    robotState = DANCE_1;
+  }
+
+  else {
 
 
-        switch(beforeGreenLedState){
-        case 0:
-            turnOnGreenLeds();
-            beforeGreenLedState=1;
-            break;
-        case 1:
-            if (!wait(beforeDanceDelay[index])) {
-        turnOffGreenLeds();
-        beforeGreenLedState=2;
+    switch (beforeGreenLedState) {
+      case 0:
+        turnOnGreenLeds();
+        beforeGreenLedState = 1;
         break;
-        }
-        case 2:
-             if (!wait(beforeDanceDelay[index])) {
-                 beforeGreenLedState=0;
-                 index++;
-             }
-            break;
+      case 1:
 
+
+        if (!wait(beforeDanceDelay[index])) {
+          turnOffGreenLeds();
+          beforeGreenLedState = 2;
         }
+
+        break;
+      case 2:
+        if (!wait(beforeDanceDelay[index])) {
+          beforeGreenLedState = 0;
+          index++;
+        }
+        break;
+
+    }
+
+  }
 
 
 }
 
 //rotationDirection : 0 --> clockwise ; 1 --> cunterclokwise
-void rotate( unsigned long int time, int rotationDirection, unsigned int rotationSpeed) {
+void rotate(int rotationDirection, unsigned int rotationSpeed) {
   switch (rotationDirection) {
 
     case 0:
       setLeftSpeed(rotationSpeed);
       setRightSpeed(0);
-      updateMotorSpeeds();
-      wait(time);
       break;
     case 1:
       setLeftSpeed(0);
       setRightSpeed(rotationSpeed);
-      updateMotorSpeeds();
-      wait(time);
       break;
   }
 }
 
+unsigned long int currentTime = 0;
 unsigned int dance_1_state = 0;
+unsigned long int start;
 
 void dance_1() {
-  unsigned long int start;
+
   switch (dance_1_state) {
     case 0:
       setRandomColor();
       setLeftSpeed(NORMAL_SPEED);
       setRightSpeed(NORMAL_SPEED);
-      updateMotorSpeeds();
+
       start = getTime100MicroSec();
       dance_1_state = 1;
       break;
     case 1:
-      if (getTime100MicroSec() - start > PAUSE_5_SEC) {
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        start = currentTime;
         setRandomColor();
-        setLeftSpeed(0);
-        setRightSpeed(0);
-        updateMotorSpeeds();
+        rotate(1,HIGH_SPEED);
         dance_1_state = 2;
 
       }
       break;
     case 2:
+
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_5_SEC) {
+
+        start = currentTime;
+        setRandomColor();
+        setLeftSpeed(- NORMAL_SPEED);
+        setRightSpeed(- NORMAL_SPEED);
+
+        dance_1_state = 3;
+
+      }
+      break;
+    case 3:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        start = currentTime;
+        setRandomColor();
+        rotate(0, HIGH_SPEED);
+        dance_1_state = 4;
+
+      }
+      break;
+    case 4:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_5_SEC) {
+        start = currentTime;
+        setRandomColor();
+        setLeftSpeed(0);
+        setRightSpeed(0);
+        // updateMotorSpeeds();
+        dance_1_state = 5;
+
+      }
       break;
   }
 
@@ -262,7 +308,7 @@ void dance_1() {
 void loop() {
 
   //this one is necessary, if not present the proximity sensors will not work !  YOU HAVE TO CALL IT ONCE INSIDE THE CODE, NOT OBLIGATORY HERE, you can call it in a different function
-  irCommTasks();
+  //irCommTasks();
   /*
     if(getTime100MicroSec()-startTime > PAUSE_10_SEC){
       setRandomColor();
