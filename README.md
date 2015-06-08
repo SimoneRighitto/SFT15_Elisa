@@ -1,11 +1,6 @@
 # SFT15 - Elisa3
 ----------------
 
-## Testé et a fonctionné
-- Download d'un programme dans le robot (Arduino pour le robot-side)
-- Contrôle du robot via l'antenne et le programme .. (CodeBlock pour le PC-side)
-
-
 ## Contenu
 
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/elisa3_mini.jpg"
@@ -21,9 +16,6 @@
 8. [Mise en place finale](#place)
 9. [Conclusion](#conlusion)
 10. [Liens](#liens)
-
-
-*Note : En italique se trouvent les points à confirmer avec l'équipe et avec leur faisabilité.*
 
 ## <a name="intro"></a>1. Introduction
 
