@@ -37,6 +37,11 @@ Ainsi, nous pourrons réutiliser une partie du code déjà conçu lors du projet
 
 ## <a name="elisa"></a>3. Elisa-3
 
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/elisa3-one.jpg"
+ alt="Elisa-3" title="Elisa-3" align="right" />
+ 
+Ce petit robot est rond, mesure moins de 10cm de diamètre et possède de multiples senseurs et fonctionnalités. Nous allons les découvrir dans ce chapitre.
+
 ### 3.1 Déplacement 
 Pour se déplacer et tourner, le robot Elisa-3 possède deux roues indépendantes, chacune étant couplée à son propre moteur DC.  De plus, un accéléromètre sur trois axes permet au robot de connaître son orientation dans l’espace. Le déplacement du robot et la charge sont indépendants de la gravité. Le robot travaille également à la verticale et à l'envers, grâce à ses aimants. Sa position peut être exploitée par le programme du robot afin de changer le comportement du robot, par exemple. 
 
@@ -111,6 +116,10 @@ Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissa
 *ici*
 
 #### 7.2.3 Rechargement
+
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/elisa3_charger.jpg"
+ alt="Elisa-3" title="Elisa-3" align="right" />
+ 
 *ici*
 
 #### 7.2.4 Communication entre les robots
