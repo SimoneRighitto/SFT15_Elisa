@@ -28,6 +28,7 @@ const unsigned int HIGH_SPEED = 20;
 //robot state constants
 unsigned int robotState;
 const unsigned int INIT = 99;
+const unsigned int LOW_BATTERY = 88;
 const unsigned int BEFORE_DANCE = 0;
 const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
@@ -36,8 +37,14 @@ const unsigned int BASE_MODE = 3;
 //communication constatns
 unsigned char NO_DATA = 0;
 
+//battery constants
+const unsigned int BATTERY_LEVEL_STOP_CHARGING = 950;
+const unsigned int BATTERY_LEVEL_START_CHARGING = 400;
+
+
 unsigned long int currentTime = 0;
 unsigned long int start;
+unsigned int batteryStart;         // stores the last time the battery was updated
 
 void updateMotorSpeeds_2() {
   pwm_intermediate_right_desired = pwm_right_desired;
@@ -96,12 +103,38 @@ void updateMotorSpeeds()  {
   handleMotorsWithSpeedController();
 }
 
+// update the battery level
+// if the level is below the minimal level, the robot enter the charging state
+void updateBatteryLevel() {
+  if (getTime100MicroSec() > (batteryStart + PAUSE_5_SEC)) {    // update the battery level every 5 seconds
+    readBatteryLevel();
+    batteryStart = getTime100MicroSec();
+
+    if(batteryLevel <= BATTERY_LEVEL_START_CHARGING){
+        //the robot must now go to charging state
+        robotState = LOW_BATTERY;
+    }
+  }
+}
+
+boolean charging() {
+  if (batteryLevel > BATTERY_LEVEL_STOP_CHARGING) {
+    return false;
+  }
+  else if (CHARGE_ON) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 void setup() {
   initPeripherals();
   calibrateSensors();
   initBehaviors();
   irCommInit();
-
+  readBatteryLevel();
   speedStepCounter = getTime100MicroSec();
 
   enableObstacleAvoidance();
@@ -124,13 +157,21 @@ void setup() {
 
 
 void checkStart() {
+    unsigned char sensed = NO_DATA;
   //to be able to start with the pc antenna
   handleRFCommands();
   turnOnGreenLeds();
   if (pwm_red == 0 && pwm_green == 255 && pwm_blue == 255) {
-    robotState=BEFORE_DANCE;
+    robotState=BASE_MODE;
     turnOffGreenLeds();
   }
+  sensed = senseCommunication();
+
+      if(sensed!=NO_DATA){
+        setLEDcolor(255,0,255);
+        robotState = BEFORE_DANCE;
+
+      }
 }
 
 //255 --> is zero ; 0--> mean full color
@@ -191,6 +232,8 @@ void beforeDance() {
 
 
   if (index >= (sizeof(beforeDanceDelay) / sizeof(int))) {
+    index = 0;
+    beforeGreenLedState = 0;
     robotState = DANCE_1;
   }
 
@@ -258,10 +301,10 @@ void turn(int turnDirection, unsigned int turnSpeed) {
 
 unsigned int dance_1_state = 0;
 void dance_1() {
-
+enableObstacleAvoidance();
   switch (dance_1_state) {
     case 0:
-      setRandomColor();
+      setLEDcolor(255,0,57); //turquoise
       setLeftSpeed(NORMAL_SPEED);
       setRightSpeed(NORMAL_SPEED);
 
@@ -272,7 +315,7 @@ void dance_1() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_2_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(0,63,255); //dark yellow
         rotate(1, HIGH_SPEED);
         dance_1_state = 2;
 
@@ -284,7 +327,7 @@ void dance_1() {
       if (currentTime - start > PAUSE_5_SEC) {
 
         start = currentTime;
-        setRandomColor();
+         setLEDcolor(171,0,255); //green
         setLeftSpeed(- NORMAL_SPEED);
         setRightSpeed(- NORMAL_SPEED);
 
@@ -296,7 +339,7 @@ void dance_1() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_2_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(240,255,0); //blue
         rotate(0, HIGH_SPEED);
         dance_1_state = 4;
 
@@ -306,11 +349,18 @@ void dance_1() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_5_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(0,159,255); //dark orange
         setLeftSpeed(0);
         setRightSpeed(0);
 
-        robotState = DANCE_2;
+         dance_1_state=5;
+
+      }
+          case 5:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_5_SEC) {
+        start = currentTime;
+        robotState = INIT;
         dance_1_state=0;
 
       }
@@ -320,10 +370,10 @@ void dance_1() {
 
 unsigned int dance_2_state = 0;
 void dance_2() {
-
+  enableObstacleAvoidance();
   switch (dance_2_state) {
     case 0:
-      setRandomColor();
+      setLEDcolor(0,255,240);
       turn(0, HIGH_SPEED);
       start = getTime100MicroSec();
       dance_2_state = 1;
@@ -332,7 +382,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(20,255,220);
         turn(0, -HIGH_SPEED);
         dance_2_state = 2;
 
@@ -344,7 +394,7 @@ void dance_2() {
       if (currentTime - start > PAUSE_1_SEC) {
 
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(40,255,200);
         turn(1, HIGH_SPEED);
 
         dance_2_state = 3;
@@ -355,7 +405,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(60,255,180);
         turn(1, -HIGH_SPEED);
         dance_2_state = 4;
 
@@ -365,7 +415,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(80,255,160);
         setLeftSpeed(NORMAL_SPEED);
         setRightSpeed(NORMAL_SPEED);
 
@@ -377,7 +427,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_2_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(100,255,140);
         rotate(1, NORMAL_SPEED);
         dance_2_state = 6;
 
@@ -387,7 +437,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(120,255,100);
         turn(0, HIGH_SPEED);
         dance_2_state = 7;
 
@@ -397,7 +447,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(140,255,60);
         turn(0, -HIGH_SPEED);
         dance_2_state = 8;
 
@@ -409,7 +459,7 @@ void dance_2() {
       if (currentTime - start > PAUSE_1_SEC) {
 
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(160,255,40);
         turn(1, HIGH_SPEED);
 
         dance_2_state = 9;
@@ -420,7 +470,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(180,255,20);
         turn(1, -HIGH_SPEED);
         dance_2_state = 10;
 
@@ -430,7 +480,7 @@ void dance_2() {
       currentTime = getTime100MicroSec();
       if (currentTime - start > PAUSE_1_SEC) {
         start = currentTime;
-        setRandomColor();
+        setLEDcolor(200,255,0);
         setLeftSpeed(0);
         setRightSpeed(0);
 
@@ -463,19 +513,13 @@ unsigned char senseCommunication() {
 
 
 /*
-* Basic robot bheaviours: random moving whit obstacle avoidance and random RBG colors and auto charghing
+* Basic robot behaviour: random moving whit obstacle avoidance and random RBG colors and auto charging
 */
 unsigned long int startChangeColor = 0;
 unsigned int base_state=0;
 unsigned char received=NO_DATA;
 void baseMode(){
 
-//if(batteryLevel < DESIRED_BATTERY_LEVEL ) {
-              //handle the battery recharge
-              //rechargeBattery();
-
-//}
-//else{
 
     switch(base_state){
 
@@ -491,13 +535,13 @@ case 1:
 
     currentTime = getTime100MicroSec();
 
-      if((currentTime -startChangeColor) >= (PAUSE_2_SEC)) {
+      if((currentTime -startChangeColor) >= (PAUSE_5_SEC)) {
         startChangeColor = currentTime;
         setRandomColor();
 
       }
 
-      //handle other robot contact
+      //handle others robot contact
       sendToRobots(1);
       received = senseCommunication();
 
@@ -508,26 +552,14 @@ case 1:
       }
 
       }
-//}
 
 }
 
 void loop() {
-  readBatteryLevel();
-  
-  //this one is necessary, if not present the proximity sensors will not work !  YOU HAVE TO CALL IT ONCE INSIDE THE CODE, NOT OBLIGATORY HERE, you can call it in a different function
-  irCommTasks();
+  //update battery level
+  updateBatteryLevel();
 
 
-  /*
-    if(getTime100MicroSec()-startTime > PAUSE_10_SEC){
-      setRandomColor();
-      startTime=getTime100MicroSec();
-    }
-    */
-
-
-  //beforeDance();
   switch (robotState) {
     case INIT:
       //checkStart();
@@ -548,6 +580,12 @@ void loop() {
     case BASE_MODE:
         baseMode();
         break;
+    case LOW_BATTERY:
+        //implement the charging routine
+        // TO DO
+        // TO DO
+        break;
+
   }
 
   updateMotorSpeeds();
