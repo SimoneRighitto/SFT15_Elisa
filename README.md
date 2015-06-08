@@ -98,49 +98,36 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 
 
 ## <a name="concept"></a>7. Fonctionnalités et implémentation
-Bien que nous ayions déjà reçu le code fonctionnel de la première partie du projet, nous avons décidé de remplacer la librairie utilisée par la nouvelle librairie fournie par GCtronic. En effet, la première librairie ne permettait malheureusement pas d'utiliser toutes les fonctionnalités énnoncée du robot (notamment le *cliff avoidance* et la communication entre les robots).
+Bien que nous ayions reçu le code fonctionnel de la première partie du projet, nous avons décidé de remplacer la librairie utilisée par la nouvelle, fournie par GCtronic. En effet, la première librairie ne permettait malheureusement pas d'utiliser toutes les fonctionnalités énnoncée du robot (notamment le *cliff avoidance* et la communication entre les robots).
 
-Toutefois, nous nous sommes rapidemment rendus compte que le code existant ne fonctionnait pas avec la nouvelle librairie. Par conséquent, nous avons passé un temps considérable à comprendre la nouvelle librairie et à corriger le code pour le faire fonctionner.
+Toutefois, nous nous sommes rapidemment rendus compte que le code existant ne fonctionnait pas avec la nouvelle librairie. Par conséquent, nous avons passé un temps considérable à la comprendre et à corriger le code pour le faire fonctionner.
 
-Dans ce chapitre, nous présentons chaque mode et son implémentation, ainsi que les difficultés rencontrées.
+Dans ce chapitre, nous présentons le concept final et son implémentation, ainsi que les difficultés rencontrées.
 
-### 7.1 Mode de base
-#### 7.1.1 Concept
-*Pour chaque fin de mode, tous les robots se déplacent aléatoirement et vont se recharger aléatoirement.*
-
-####7.1.2 Implémentation
-*ici*
-
-### 7.2 Contamination
-
-#### 7.2.1 Concept
+### 7.1 Concept
 Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
 Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
 
-#### 7.2.2 Implémentation
-*ici*
+### 7.2 Implémentation
 
-### 7.3 Communication entre les robots
-
-#### 7.3.1 Implémentation
+#### 7.2.1 Communication entre les robots
 Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Nous avons rencontré un certain nombre de difficultés à faire cela. Une variable nommée NUMBER_ROBOTS ne changeait apparemment pas le nombre de robots auxquels nous pouvions communiquer. Nous avons essayé avec les valeurs 5 et 6 mais nous ne pouvions communiquer qu'avec 4 robots. 
 Après de nombreux tests effectués à d'autres endroits dans le code et même en essayant de modifier la bibliothèque fournie cela ne résolvait pas le problème. 
 Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. Nous avons donc réussi en initialisant la variable NUMBER_ROBOTS à 8 à faire fonctionner plus de 4 robots.
 
-### 7.4 Contamination contrôlée
-
-#### 7.4.1 Concept
-Même chose que la Contamination, sauf qu'un visiteur peut diriger lui-même le premier robot contaminé.
-
-#### 7.4.2 Implémentation
+#### 7.2.2 Suivi des lignes
 *ici*
 
-### 7.5 Parade ?
+#### 7.2.3 Rechargement
+*ici*
 
-#### 7.5.1 Concept
-*Groupe de 4 robots qui font les mêmes déplacements de manière synchonisée.*
+#### 7.2.4 Communication entre les robots
+*ici*
 
-#### 7.5.2 Implémentation
+#### 7.2.5 Réveil du robot (before)
+*ici*
+
+#### 7.2.6 Danses 
 *ici*
 
 ## <a name="place"></a>8. Mise en place finale
