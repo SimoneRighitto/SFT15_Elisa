@@ -58,7 +58,7 @@ Le robot possède aussi une antenne RF afin de communiquer avec un ordinateur. I
 Ils peuvent également communiquer des informations avec un robot semblable. 
 
 ### 3.5 Couleurs 
-Une led RGB centrale permet au robot d’afficher un large choix de couleurs sur le dessus du l’appareil. Elisa-3 dispose aussi de huit leds vers sur le côté.
+Une led RGB centrale permet au robot d’afficher un large choix de couleurs sur le dessus du l’appareil. Elisa-3 dispose aussi de huit leds vertes sur le côté.
 
 ### 3.6 Batterie 
 Une batterie équipe le robot. Elle peut être chargée soit en le branchant avec un câble micro USB à l'ordinateur, soit en positionnant les deux contacts dorés sur une station de rechargement adaptée. Lors du rechargement, une petite led rouge frontale s'allume.
