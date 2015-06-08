@@ -29,6 +29,8 @@ const unsigned int HIGH_SPEED = 20;
 unsigned int robotState;
 const unsigned int INIT = 99;
 const unsigned int LOW_BATTERY = 88;
+const unsigned int IN_CHARGER = 77;
+
 const unsigned int BEFORE_DANCE = 0;
 const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
@@ -39,12 +41,13 @@ unsigned char NO_DATA = 0;
 
 //battery constants
 const unsigned int BATTERY_LEVEL_STOP_CHARGING = 950;
-const unsigned int BATTERY_LEVEL_START_CHARGING = 400;
+const unsigned int BATTERY_LEVEL_START_CHARGING = 940;
 
 
 unsigned long int currentTime = 0;
 unsigned long int start;
 unsigned int batteryStart;         // stores the last time the battery was updated
+unsigned int accelerometerStart;   // stores the last time the accelerometer was updated
 
 void updateMotorSpeeds_2() {
   pwm_intermediate_right_desired = pwm_right_desired;
@@ -114,6 +117,13 @@ void updateBatteryLevel() {
         //the robot must now go to charging state
         robotState = LOW_BATTERY;
     }
+  }
+}
+
+void updateAccelerometer() {
+  if (getTime100MicroSec() > (accelerometerStart + PAUSE_200_MSEC)) {    // update the accelerometer every 200 ms
+    readAccelXYZ();
+    accelerometerStart = getTime100MicroSec();
   }
 }
 
@@ -225,16 +235,30 @@ bool wait(unsigned long int time) {
 
 unsigned int index = 0;
 unsigned int beforeGreenLedState = 0;
+unsigned int randDance=0;
 void beforeDance() {
 
 
   int beforeDanceDelay[] = {PAUSE_1_SEC, PAUSE_750_MSEC, PAUSE_500_MSEC, PAUSE_300_MSEC, PAUSE_300_MSEC, PAUSE_300_MSEC, PAUSE_250_MSEC, PAUSE_250_MSEC, PAUSE_100_MSEC};
 
+    setLeftSpeed(0);
+    setRightSpeed(0);
 
   if (index >= (sizeof(beforeDanceDelay) / sizeof(int))) {
     index = 0;
     beforeGreenLedState = 0;
-    robotState = DANCE_1;
+    randDance = rand()%2;
+    switch(randDance){
+    case 0:
+        robotState = DANCE_1;
+        break;
+    case 1:
+        robotState = DANCE_2;
+        break;
+    default:
+        robotState = DANCE_1;
+    }
+
   }
 
   else {
@@ -301,9 +325,11 @@ void turn(int turnDirection, unsigned int turnSpeed) {
 
 unsigned int dance_1_state = 0;
 void dance_1() {
-enableObstacleAvoidance();
+
   switch (dance_1_state) {
     case 0:
+      enableObstacleAvoidance();
+
       setLEDcolor(255,0,57); //turquoise
       setLeftSpeed(NORMAL_SPEED);
       setRightSpeed(NORMAL_SPEED);
@@ -370,9 +396,10 @@ enableObstacleAvoidance();
 
 unsigned int dance_2_state = 0;
 void dance_2() {
-  enableObstacleAvoidance();
+
   switch (dance_2_state) {
     case 0:
+      enableObstacleAvoidance();
       setLEDcolor(0,255,240);
       turn(0, HIGH_SPEED);
       start = getTime100MicroSec();
@@ -555,6 +582,11 @@ case 1:
 
 }
 
+void braitenbergLineFollower() {
+setLEDcolor(255,0,0);
+}
+
+
 void loop() {
   //update battery level
   updateBatteryLevel();
@@ -582,10 +614,25 @@ void loop() {
         break;
     case LOW_BATTERY:
         //implement the charging routine
-        // TO DO
-        // TO DO
-        break;
 
+        // reinitialise all basic variables
+        base_state=0;
+         //update accelerometer
+        updateAccelerometer();
+
+        //TODO here follow the line and go charging
+        braitenbergLineFollower();
+        break;
+    case IN_CHARGER:
+      setLEDcolor(255, 255, 255);
+      turnOnGreenLeds();
+      setLeftSpeed(0);
+      setRightSpeed(0);
+      if(!charging()){
+        robotState = BASE_MODE;
+        turnOffGreenLeds();
+      }
+      break;
   }
 
   updateMotorSpeeds();
