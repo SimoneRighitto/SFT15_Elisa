@@ -241,7 +241,7 @@ void checkStart() {
     turnOffGreenLeds();
   }
   else if(checkNearbyObjects()){
-    robotState = BASE_MODE;
+    robotState = LOW_BATTERY;
     robotStartedTime = getTime100MicroSec();
     turnOffGreenLeds();
   }else if(robotState == LOW_BATTERY){
@@ -586,7 +586,7 @@ void braitenbergLineFollower() {
   // proximityResult[10] -> front right
   // proximityResult[11] -> side right
 
-  front_diff = ((int)proximityResult[9] - (int)proximityResult[10]) >> 5;
+  front_diff = ((int)proximityResult[9] - (int)proximityResult[10]) >> 4;
   //signed char forward_speed = CONSTANT_SPEED_FOLLOW - abs(front_diff);
   //if (forward_speed < 0) {
   //  forward_speed = 0;
@@ -742,7 +742,7 @@ void loop() {
   //update battery level
   updateBatteryLevel();
 
-  if (!((getTime100MicroSec() - robotStartedTime) >= (2*PAUSE_60_SEC))) { //check if is the end of the experience
+  if (!((getTime100MicroSec() - robotStartedTime) >= (2*PAUSE_20_SEC))) { //check if is the end of the experience
 
       if(isEndOfTempAction()){
             updateAccelerometer();
