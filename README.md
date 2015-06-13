@@ -104,8 +104,9 @@ Toutefois, nous nous sommes rapidemment rendus compte que le code existant ne fo
 Dans ce chapitre, nous présentons le concept final et son implémentation, ainsi que les difficultés rencontrées.
 
 ### 7.1 Concept
-Un des robot est contaminé. Son but est de contaminer tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot contaminé.
-Dès qu'un robot sain est touché par un robot contaminé, ce dernier prend le mode "contaminé" et commense à se déplacer. A la fin du mode, les robots se mettent en mode "terminé".
+Un des robot est défini comme étant un danseur fous. Son but est de transmettre sa passion pour la danse à tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot danseur.
+Dès qu'un robot immobilisé est approché par un robot danseur, ce dernier commencera  lui aussi à danser.
+Toutes les deux minutes le spectacle est stoppé et le visiteur du musée devra « lancer » le danseur fous pour recommencer le spectacle.
 
 ### 7.2 Implémentation
 
