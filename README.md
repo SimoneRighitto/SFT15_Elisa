@@ -21,9 +21,10 @@
 
 Elisa-3 est un robot conçu par [GCtronic](http://www.gctronic.com/) et équipé notamment de capteurs, d’émetteurs infrarouges et de Leds RGB qui permettent de colorer le couvercle du robot. 
 
-Le but général de ce projet est de pouvoir mettre en place un scénario intéressant utilisant des robots. En effet, la Maison d’Ailleurs, musée de la science-fiction situé à Yverdon-les-Bains, mettra à notre disposition un espace afin de montrer notre travail, dans le cadre de sa future exposition sur la thématique des robots. 
+Le but général de ce projet est de pouvoir mettre en place un scénario intéressant utilisant des robots. En effet, la Maison d’Ailleurs, musée de la science-fiction situé à Yverdon-les-Bains, mettra à notre disposition un espace afin de montrer notre travail, ceci dans le cadre de sa future exposition sur la thématique des robots « Portrait-robot ».
+Notre concept – détaillé par la suite – est le suivant : un des robots est défini comme étant un danseur fou. Son but est de transmettre sa passion pour la danse à tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot danseur. Dès qu'un robot immobilisé est approché par le robot danseur, ce dernier commencera lui aussi à danser, et devient par conséquent à son tour un danseur fou. Après deux minutes, le spectacle est terminé et le visiteur du musée devra lui-même relancer le programme pour recommencer le spectacle.
 
-Le projet décrit par la suite est en réalité une reprise d'un premier projet (réalisé par Marcel Sinniger, Dominique Jollien, Stéphane Maillard et Auriana Hug). Nous avons donc pu nous baser sur une première expérience. Toutefois, comme nous le verrons par la suite, nous avons fait face à de nouveaux challenges.  
+Le projet décrit par la suite est en réalité une reprise d'un premier projet (réalisé par Marcel Sinniger, Dominique Jollien, Stéphane Maillard et Auriana Hug). Nous avons donc pu nous baser sur une première expérience. Toutefois, comme nous le verrons par la suite, nous avons fait face à de nouveaux challenges. 
 
 En outres, ce document explique les différents outils de programmation nécessaires pour travailler avec le robot Elisa-3. Les fonctionnalités imaginées dans notre scénario seront expliquées au niveau de leur mise en œuvre et de leur implémentation. 
 
@@ -99,37 +100,36 @@ La communication à l’aide de l’antenne permet aussi de récupérer des vale
 ## <a name="concept"></a>7. Fonctionnalités et implémentation
 Bien que nous ayions reçu le code fonctionnel de la première partie du projet, nous avons décidé de remplacer la librairie utilisée par la nouvelle, fournie par GCtronic. En effet, la première librairie ne permettait malheureusement pas d'utiliser toutes les fonctionnalités énoncée du robot (notamment le *cliff avoidance* et la communication entre les robots).
 
-Toutefois, nous nous sommes rapidement rendus compte que le code existant ne fonctionnait pas avec la nouvelle librairie. Par conséquent, nous avons passé un temps considérable à la comprendre et à corriger le code pour le faire fonctionner.
+Toutefois, nous nous sommes rapidement rendu compte que le code existant ne fonctionnait pas avec la nouvelle librairie. Par conséquent, nous avons passé un temps considérable à la comprendre et à corriger le code pour le faire fonctionner.
 
 Dans ce chapitre, nous présentons le concept final et son implémentation, ainsi que les difficultés rencontrées.
 
 ### 7.1 Concept
-Un des robot est défini comme étant un danseur fous. Son but est de transmettre sa passion pour la danse à tous les autres robots. Ceux-ci sont immobiles et ont une couleur les distinguant du robot danseur.
-Dès qu'un robot immobilisé est approché par un robot danseur, ce dernier commencera  lui aussi à danser.
-Toutes les deux minutes le spectacle est stoppé et le visiteur du musée devra « lancer » le danseur fous pour recommencer le spectacle.
+Les robots sont tous dans un état d’attente, prêts à être activés. Un robot choisi au hasard parmi les robots disponibles et possédant un niveau suffisant de batterie devient le « danseur fou ». Lorsqu’un visiteur du musée touche l’interface Touchrotation, il commence à danser. 
+
+Quand le robot danseur s’approche des autres robots, il  active ces derniers et ils deviendront à leur tour des danseurs. En quoi consiste la danse des robots ? Un robot danseur se déplace principalement, de manière aléatoire et en changeant de couleur toutes les 5 secondes. De plus, toutes les 40 secondes, il effectue des pas de danse prédéfinis. 
+
+Pendant ce temps, les robots contrôlent constamment leur niveau de batterie. Si celui-ci est inférieur au minimum vital, ils passeront en mode « rechargement ». Ceci implique le suivi d’une ligne blanche qui est capable de les amener directement à la station de chargement. Une fois sur la station de rechargement, le robot doit continuellement contrôler s’il est en contact avec le chargeur. En cas de déconnexion, il contrôle son niveau de batterie. S’il est suffisamment haut, il commence la procédure de déconnexion définitive. Si le niveau est encore insuffisant, le robot essaie de se reconnecter. Un timer général sera chargé de contrôler la durée du spectacle. En effet, nous avons décidé de fixer une limite de 2 minutes pour le spectacle. Apres cela, les robots se remettent à l’état initial, donc en attente de la commande envoyée par le visiteur du musée.
+
 
 ### 7.2 Implémentation
-Les robots sont tous dans un état d’attente prêt à être activés. Un robot choisi au hasard parmi les robots disponibles et avec un niveau suffisant de batterie est choisi comme étant le danseur fou et démarre la danse quand un visiteur du musée touche l’interface « touchpad ». Quand le robot danseur s’approche des autres robots, il va « activer » ses dernies et ils deviendront à leur tour des danseurs. Mais qu’est-que-que ça veut dire d’être un robot danseur ?  Principalement un robot danseur se déplace aléatoirement en changeant de couleur toutes les 5 secondes. De plus, toutes les 40 secondes il effectuera ses pas de danses prédéfinis. Pendant tout ce temps les robots seront toujours en train de contrôler leur niveau de batterie. Si celui-ci est inférieur au minimum vital, il passera en modalité de rechargement. Ceci implique le suivi d’une ligne blanche qui sera capable de les amener directement à la station de chargement. Une fois sur la station de rechargement le robot devra constamment contrôler si il est en contact avec le chargeur. En cas de déconnexion, il contrôlera son niveau de batterie. Si le niveau est suffisamment haut, il commencera la procédure de déconnexion définitive. Si le niveau est encore insuffisant il essayera de se reconnecter. Un timer général sera chargé de contrôler la durée du spectacle. Nous avons décidé de fixer une limite de 2 minutes pour le spectacle. Après ces 2 minutes, les robots se remettent à l’état initial, donc en attente de la commande envoyée par le visiteur.
 
 #### 7.2.1 Écoute du signal de démarrage  ((( *ici FRED * )))
-Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Nous avons rencontré un certain nombre de difficultés à faire cela. Une variable nommée NUMBER_ROBOTS ne changeait apparemment pas le nombre de robots auxquels nous pouvions communiquer. Nous avons essayé avec les valeurs 5 et 6 mais nous ne pouvions communiquer qu'avec 4 robots. 
-Après de nombreux tests effectués à d'autres endroits dans le code et même en essayant de modifier la bibliothèque fournie cela ne résolvait pas le problème. 
-Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. Nous avons donc réussi en initialisant la variable NUMBER_ROBOTS à 8 à faire fonctionner plus de 4 robots.
+Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Cependant, nous avons rencontré un certain nombre de difficultés. Une variable nommée `NUMBER_ROBOTS` ne changeait apparemment pas le nombre de robots auxquels nous pouvions transmettre de l’information. En effet, bien que nous ayons modifié la valeur à 5 ou 6, nous ne pouvions communiquer qu'avec 4 d’entre eux. Après de nombreux tests effectués à d'autres endroits dans le code, le problème persistait,  même en essayant de modifier la bibliothèque fournie. Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. En effet, en initialisant la variable `NUMBER_ROBOTS` à 8, nous avons réussi à faire fonctionner plus de 4 robots.
 
-+++ détection proximité
-+++ passage en mode recherche de la ligne (rechargement) automatique si niveau de batterie trop faible 
+*A ajouter*
+- détection proximité
+- passage en mode recherche de la ligne (rechargement) automatique si niveau de batterie trop faible 
 
 #### 7.2.2 Suivi des lignes et rechargement
-
-code de Fred (explications et code)
-+ dire que changement => nouveau code (explications et code)
-
-*ici Fred*
+*Fred*
+- code de Fred (explications et code)
+- nouveau code (explications et code)
 
 #### 7.2.4 Communication entre les robots
-Nous avons testé pendent plusieurs périodes la communication locale entre robots. Apres des problèmes initiaux liés à la librairie nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer des messages et de recevoir des données. 
+A plusieurs reprises, nous avons testé la communication locale entre robots. Après avoir résolu différents problèmes initiaux liés à la librairie, nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer ou recevoir des messages.
 
-```C
+```
 void sendToRobots(unsigned char toSend) {
   if (irCommDataSent() == 1) {
     irCommSendData(toSend);
@@ -150,15 +150,14 @@ unsigned char senseCommunication() {
 
 ```
 
-Finalement nous avons du enlever la communication locale du projet final parce que c’était une source de problème pour le suivi des lignes. En effet, la charge de travail générée par les opérations d’envoi et de réception des données diminue la réactivités des capteurs du robot, qui se trouve donc en difficulté quand il doit suivre les lignes.
+Finalement, nous avons dû enlever la communication locale du projet final, car c’était une source de problèmes pour le suivi des lignes. En effet, la charge de travail générée par les opérations d’envoi et de réception des donnés diminue la réactivité des capteurs du robot. Ceux-ci se trouvent alors en difficulté quand ils doivent suivre les lignes.
 
 
 #### 7.2.5 Réveil du robot (before)
 *ici*
 
 #### 7.2.6 Danses 
-Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’être le plus possible agréables et appréciables par le visiteur.
-Pour mieux comprendre les pas de danse effectués par les robots voici 2 schémas qui résument les pas effectués.   
+Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’utiliser au maximum les différents mouvements possibles d’Elisa-3, tout en étant visuellement artistique. Voici deux schémas afin de mieux comprendre les pas de danse effectués par les robots.
 
 
 ## <a name="place"></a>8. Mise en place finale
