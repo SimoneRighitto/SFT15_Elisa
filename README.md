@@ -180,6 +180,15 @@ Pour mieux comprendre les pas de danse effectuées par les robots voici 2 schém
 ## <a name="conlusion"></a>9. Conclusion
 *ici Auriana*
 
+*Début Arnaud (à modifier ou déplacer si nécessaire)*
+Durant ce projet nous avons rencontré de nombreuses difficultés : avec la nouvelle bibliothèque utilisée qui malheureusement ne possède pas de documentation officielle développée, et qui de plus possède un certain nombre de comportements étranges, par exemple une limitation apparente ne permettant pas d'envoyer des commandes à plus de quatre robots de manière simultanée. La compréhension et l'utilisation de cette bibliothèque nous a posé de nombreux problèmes et la complexité du code contenu a rendu très compliquée la résolution de bugs et la modification de certaines fonctionnalités.
+Un autre problème est la difficulté d'automatiser les tests, c'est-à-dire que nous sommes obligés de transférer le code sur chaque robot individuellement à chaque modification importante, et comme nous en possédons un certain nombre cela s'avère très chronophage.
+
+Malgré ces nombreuses difficultés, nous avons réussi à réaliser le projet en remplissant les objectifs du cahier des charges. Il est possible aux robots d'effectuer des danses que nous avons prédéfinies, et pour que les spectateurs profitent au maximum des effets visuels nous avons varié les couleurs de manière intelligente et ludique pour procurer un rendu des plus attrayants. Une des fonctionnalités phares que nous avons implémentée étant le rechargement autonome : lorsqu'un robot atteint un seuil prédéfinit de batterie faible il cherche une station de recharge en suivant une des lignes situées sur le sol, si cette station est déjà occupée il ne force pas le passage, mais au contraire de manière intelligente il se retire et se met à la recherche d'une autre base libre. Cette fonctionnalité est extrêmement utile car dans le contexte d'un musée il serait très pénible et inconvenant pour la personne responsable de devoir recharger les robots individuellements chaque fois qu'ils sont déchargés, il faudrait presque un employé à temps complet chargé de cette mission. Un autre atout de notre projet tient dans le fait que l'on puisse utiliser un capteur digital permettant à un visiteur en rapprochant sa main de donner l'ordre aux robots de démarrer, plutôt que de devoir faire cela de manière moins ludique à l'aide d'un ordinateur. Le visiteur n'est donc pas seulement passif, mais est un acteur à part entière de l'exposition. 
+
+En conclusion, ce projet nous a permis de nous familiariser avec les robots Elisa-3, de voir ses forces mais aussi ses faiblesses et au final nous sommes arrivés à développer des cas d'utilisation fonctionnels et qui correspondent aux attentes de la Maison d'Ailleurs. L'année du robot est une année spéciale et nous sommes confiants dans le fait que les Elisa-3 apporteront leur pierre à l'édifice de l'exposition Portrait-Robot.
+*Fin Arnaud*
+
 
 ## <a name="liens"></a>10. Liens
 
