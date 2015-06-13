@@ -156,6 +156,8 @@ Finalement nous avons du enlever la communication locale du projet finale parce 
 *ici*
 
 #### 7.2.6 Danses 
+Nous avons choisie d’implémenter deux danses pour ce projet. L’objectifs des danses est d’être le plus possible agréables et appréciables par le visiteur.
+Pour mieux comprendre les pas de danse effectuées par les robots voici 2 schéma qui résument les pas effectuées   
 
 
 ## <a name="place"></a>8. Mise en place finale
