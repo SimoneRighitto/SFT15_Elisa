@@ -72,8 +72,10 @@ Pour ce projet, nous avons utilisé :
 
 - 8 robots Elisa-3  
 - 1 antenne RF (avec son câble) 
-- 2 bases de recharges (avec leur câble) 
+- 3 bases de recharges (avec leur câble) 
 - 1 environnement (l’arène) 
+- Phidget Touchrotation 1016
+- Raspberry Pie
 
 
 ## <a name="envi"></a>6. Environnement de développement
@@ -112,15 +114,12 @@ Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. N
 Après de nombreux tests effectués à d'autres endroits dans le code et même en essayant de modifier la bibliothèque fournie cela ne résolvait pas le problème. 
 Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. Nous avons donc réussi en initialisant la variable NUMBER_ROBOTS à 8 à faire fonctionner plus de 4 robots.
 
-#### 7.2.2 Suivi des lignes
-*ici*
+#### 7.2.2 Suivi des lignes et rechargement
 
-#### 7.2.3 Rechargement
+code de Fred (explications et code)
++ dire que changement => nouveau code (explications et code)
 
-<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/elisa3_charger.jpg"
- alt="Elisa-3" title="Elisa-3" align="right" />
- 
-*ici*
+*ici Fred*
 
 #### 7.2.4 Communication entre les robots
 *ici*
@@ -134,6 +133,8 @@ Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissa
 ## <a name="place"></a>8. Mise en place finale
 
 ### 8.1 Arène
+*ici Auriana*
+
 
 #### Schéma de l'arène
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/schema_areneB.jpg"
@@ -147,7 +148,7 @@ Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissa
 
 
 ## <a name="conlusion"></a>9. Conclusion
-*ici*
+*ici Auriana*
 
 
 ## <a name="liens"></a>10. Liens
