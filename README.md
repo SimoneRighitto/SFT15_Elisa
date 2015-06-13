@@ -109,9 +109,9 @@ Dès qu'un robot immobilisé est approché par un robot danseur, ce dernier comm
 Toutes les deux minutes le spectacle est stoppé et le visiteur du musée devra « lancer » le danseur fous pour recommencer le spectacle.
 
 ### 7.2 Implémentation
-Les robots sont tous dans un état d’attende prêt à être activé. Un robot choisi au hasard parmi les robots disponibles et avec un niveau suffisant de batterie est choisi comme étant le danseur fous et démarre la danse quand un visiteur du musée touche l’interface « touchpad ». Quand le robot danseur s’approche des autres robots, il va « activer » ses dernies et il deviendrions à leur tour des danseurs. Mais qu’est que ça veut dire d’être un robot danseur ?  Principalement un robot danseur il se déplace aléatoirement en changent de couleur toutes les 5 secondes. De plus, toutes les 40 secondes il effectuera ses pas de danse prédéfini. Pendant tout ce temps les robot seront toujours en train de contrôler leur niveau de batterie. Si celui-ci est inférieur au minimum vitale, il passerons en modalité de rechargement. Ceci implique le suivie d’une ligne blanche qui sera capable de les amener directement à la station de chargement. Une fois sur la station de rechargement le robot devra constamment contrôler si il est en contact avec le chargeur. En cas de déconnexion  il contrôlera son niveau de batterie. Si le niveau est suffisamment haut, il commencera la procédure de déconnexion définitive. Si le niveau est encore insuffisante il essayera de se reconnecter. Un timer général sera chargé de contrôler la durée du spectacle. Nous avons décidé de fixer un limite de 2 minutes pour spectacle. Apres ses 2 minutes, les robot se remettent à l’état initiale, donc en attende de la commande envoyé par le visiteur.
+Les robots sont tous dans un état d’attente prêt à être activés. Un robot choisi au hasard parmi les robots disponibles et avec un niveau suffisant de batterie est choisi comme étant le danseur fou et démarre la danse quand un visiteur du musée touche l’interface « touchpad ». Quand le robot danseur s’approche des autres robots, il va « activer » ses dernies et ils deviendriont à leur tour des danseurs. Mais qu’est-que-que ça veut dire d’être un robot danseur ?  Principalement un robot danseur se déplace aléatoirement en changeant de couleur toutes les 5 secondes. De plus, toutes les 40 secondes il effectuera ses pas de danses prédéfinis. Pendant tout ce temps les robots seront toujours en train de contrôler leur niveau de batterie. Si celui-ci est inférieur au minimum vital, il passera en modalité de rechargement. Ceci implique le suivi d’une ligne blanche qui sera capable de les amener directement à la station de chargement. Une fois sur la station de rechargement le robot devra constamment contrôler si il est en contact avec le chargeur. En cas de déconnexion, il contrôlera son niveau de batterie. Si le niveau est suffisamment haut, il commencera la procédure de déconnexion définitive. Si le niveau est encore insuffisant il essayera de se reconnecter. Un timer général sera chargé de contrôler la durée du spectacle. Nous avons décidé de fixer une limite de 2 minutes pour le spectacle. Après ces 2 minutes, les robots se remettent à l’état initial, donc en attente de la commande envoyée par le visiteur.
 
-#### 7.2.1 Écout du signale de demarrage  ((( *ici FRED * )))
+#### 7.2.1 Écoute du signal de démarrage  ((( *ici FRED * )))
 Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Nous avons rencontré un certain nombre de difficultés à faire cela. Une variable nommée NUMBER_ROBOTS ne changeait apparemment pas le nombre de robots auxquels nous pouvions communiquer. Nous avons essayé avec les valeurs 5 et 6 mais nous ne pouvions communiquer qu'avec 4 robots. 
 Après de nombreux tests effectués à d'autres endroits dans le code et même en essayant de modifier la bibliothèque fournie cela ne résolvait pas le problème. 
 Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. Nous avons donc réussi en initialisant la variable NUMBER_ROBOTS à 8 à faire fonctionner plus de 4 robots.
@@ -127,7 +127,8 @@ code de Fred (explications et code)
 *ici Fred*
 
 #### 7.2.4 Communication entre les robots
-Nous avons testé pendent plusieurs périodes la communication locale entre robots. Apres des problèmes initiales lié à la librairie nous avons réussi à échanger des messages entre les robots. Voici les deux fonctionnes développé afin de pouvoir envoyer des messages et de recevoir des données. 
+Nous avons testé pendent plusieurs périodes la communication locale entre robots. Apres des problèmes initiaux liés à la librairie nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer des messages et de recevoir des données. 
+
 ```C
 void sendToRobots(unsigned char toSend) {
   if (irCommDataSent() == 1) {
@@ -149,15 +150,15 @@ unsigned char senseCommunication() {
 
 ```
 
-Finalement nous avons du enlever la communication locale du projet finale parce que c’était une source de problème pour le suivie des lignes. En effet la charge de travail généré par les opérations d’envoie et de réception des donnés diminue la réactivités des capteurs du robot, qui se trouve donc en difficulté quand il doit suivre les lignes.
+Finalement nous avons du enlever la communication locale du projet final parce que c’était une source de problème pour le suivi des lignes. En effet, la charge de travail générée par les opérations d’envoi et de réception des données diminue la réactivités des capteurs du robot, qui se trouve donc en difficulté quand il doit suivre les lignes.
 
 
 #### 7.2.5 Réveil du robot (before)
 *ici*
 
 #### 7.2.6 Danses 
-Nous avons choisie d’implémenter deux danses pour ce projet. L’objectifs des danses est d’être le plus possible agréables et appréciables par le visiteur.
-Pour mieux comprendre les pas de danse effectuées par les robots voici 2 schéma qui résument les pas effectuées   
+Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’être le plus possible agréables et appréciables par le visiteur.
+Pour mieux comprendre les pas de danse effectués par les robots voici 2 schémas qui résument les pas effectués.   
 
 
 ## <a name="place"></a>8. Mise en place finale
