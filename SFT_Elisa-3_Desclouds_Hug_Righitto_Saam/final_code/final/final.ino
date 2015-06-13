@@ -36,10 +36,6 @@ const unsigned int INIT = 99;
 const unsigned int LOW_BATTERY = 88;
 const unsigned int IN_CHARGER = 77;
 const unsigned int GOING_OFF_CHARGER = 66;
-
-
-
-
 const unsigned int DANCE_1 = 1;
 const unsigned int DANCE_2 = 2;
 const unsigned int BASE_MODE = 3;
@@ -67,7 +63,7 @@ boolean tempActionStarted;
 unsigned long tempActionDuration;   // stores the desired duration of the temporal action
 unsigned long tempActionStartTime;  // stores the time when the temporal action starts
 
-unsigned long int startDance=0;
+unsigned long int startDance = 0;
 unsigned int base_state = 0;
 
 boolean isEndOfTempAction() {
@@ -238,14 +234,14 @@ void checkStart() {
 
   if (pwm_red == 0 && pwm_green == 255 && pwm_blue == 255) {
     robotState = DANCE_1;
-    startDance=0;
+    startDance = 0;
     robotStartedTime = getTime100MicroSec();
     turnOffGreenLeds();
   }
   else if (checkNearbyObjects()) {
     robotState = BASE_MODE;
     robotStartedTime = getTime100MicroSec();
-    startDance=0;
+    startDance = 0;
     turnOffGreenLeds();
   } else if (robotState == LOW_BATTERY) {
     robotStartedTime = getTime100MicroSec();
@@ -341,7 +337,7 @@ void dance_1() {
       enableObstacleAvoidance();
 
       setLEDcolor(255, 0, 57); //turquoise
-      rotate(0,HIGH_SPEED);
+      rotate(0, HIGH_SPEED);
 
       start = getTime100MicroSec();
       dance_1_state = 1;
@@ -365,7 +361,7 @@ void dance_1() {
         turnOffGreenLeds();
         start = currentTime;
         setLEDcolor(171, 0, 255); //green
-        rotate(1,HIGH_SPEED);
+        rotate(1, HIGH_SPEED);
 
         dance_1_state = 3;
 
@@ -403,7 +399,7 @@ void dance_1() {
         turnOffGreenLeds();
         dance_1_state = 0;
         startDance = currentTime;
-        base_state=0;
+        base_state = 0;
 
       }
       break;
@@ -567,19 +563,19 @@ void baseMode() {
 
       }
 
-    if ((currentTime - startDance) >= (PAUSE_40_SEC)) {
+      if ((currentTime - startDance) >= (PAUSE_40_SEC)) {
         //startDance = currentTime; this will be updated at the end of the dance in order to let the base mode continue PAUSE_40_SEC
         randDance = rand() % 2;
-    switch (randDance) {
-      case 0:
-        robotState = DANCE_1;
-        break;
-      case 1:
-        robotState = DANCE_2;
-        break;
-      default:
-        robotState = DANCE_1;
-    }
+        switch (randDance) {
+          case 0:
+            robotState = DANCE_1;
+            break;
+          case 1:
+            robotState = DANCE_2;
+            break;
+          default:
+            robotState = DANCE_1;
+        }
 
       }
   }
@@ -707,7 +703,7 @@ void goingOffCharger() {
         setLeftSpeed(0);
         setRightSpeed(0);
         robotState = BASE_MODE;
-        startDance=currentTime;
+        startDance = currentTime;
         goingOff_state = 0;
 
       }
