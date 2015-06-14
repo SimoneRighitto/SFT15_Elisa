@@ -153,11 +153,55 @@ unsigned char senseCommunication() {
 Finalement, nous avons dû enlever la communication locale du projet final, car c’était une source de problèmes pour le suivi des lignes. En effet, la charge de travail générée par les opérations d’envoi et de réception des donnés diminue la réactivité des capteurs du robot. Ceux-ci se trouvent alors en difficulté quand ils doivent suivre les lignes.
 
 
-#### 7.2.5 Réveil du robot (before)
-*ici*
+#### 7.2.5 Base mode
+Le « base mode » est le comportement de base du robot. Ceci est activé quand un robot en attende de démarrer son spectacle entre en contact avec un robot qui danse. Son comportement est assez simple :
+Il doit avancer de manière constante en évitant les obstacles qu’il trouve. De plus il va changer sa couleur de manière aléatoire toutes les 5 secondes. Enfin, toutes les 40 secondes il va effectuer une des pas de danse prédéfini.
+Voici le code source qui permet d’implémenter ce « base mode » : 
+
+```C
+unsigned long int startChangeColor = 0;
+unsigned int randDance = 0;
+
+void baseMode() {
+
+  switch (base_state) {
+
+    case 0:
+      setRandomColor();
+      enableObstacleAvoidance();
+      setLeftSpeed(NORMAL_SPEED);
+      setRightSpeed(NORMAL_SPEED);
+      base_state = 1;
+      break;
+    case 1:
+      currentTime = getTime100MicroSec();
+
+      if ((currentTime - startChangeColor) >= (PAUSE_5_SEC)) {
+        startChangeColor = currentTime;
+        setRandomColor();
+      }
+
+      if ((currentTime - startDance) >= (PAUSE_40_SEC)) {
+        //startDance = currentTime; this will be updated at the end of the dance in order to let the base mode continue PAUSE_40_SEC
+        randDance = rand() % 2;
+        switch (randDance) {
+          case 0:
+            robotState = DANCE_1;
+            break;
+          case 1:
+            robotState = DANCE_2;
+            break;
+          default:
+            robotState = DANCE_1;
+        }
+      }
+  }
+}
+```
 
 #### 7.2.6 Danses 
 Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’utiliser au maximum les différents mouvements possibles d’Elisa-3, tout en étant visuellement artistique. Voici deux schémas afin de mieux comprendre les pas de danse effectués par les robots.
+
 Danse 1:
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/dance_1.png"
  alt="Danse 1" title="Danse 1" align="center" />
