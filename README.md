@@ -178,7 +178,7 @@ case IN_CHARGER:
           break;
 ```
 
-#### 7.2.4 Communication entre les robots
+#### 7.2.3 Communication entre les robots
 A plusieurs reprises, nous avons testé la communication locale entre robots. Après avoir résolu différents problèmes initiaux liés à la librairie, nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer ou recevoir des messages.
 
 ```
@@ -205,7 +205,7 @@ unsigned char senseCommunication() {
 Finalement, nous avons dû enlever la communication locale du projet final, car c’était une source de problèmes pour le suivi des lignes. En effet, la charge de travail générée par les opérations d’envoi et de réception des donnés diminue la réactivité des capteurs du robot. Ceux-ci se trouvent alors en difficulté quand ils doivent suivre les lignes.
 
 
-#### 7.2.5 Base mode
+#### 7.2.4 Base mode
 Le « base mode » est le comportement de base du robot. Ceci est activé quand un robot en attende de démarrer son spectacle entre en contact avec un robot qui danse. Son comportement est assez simple :
 Il doit avancer de manière constante en évitant les obstacles qu’il trouve. De plus il va changer sa couleur de manière aléatoire toutes les 5 secondes. Enfin, toutes les 40 secondes il va effectuer une des pas de danse prédéfini.
 Voici le code source qui permet d’implémenter ce « base mode » : 
@@ -251,7 +251,7 @@ void baseMode() {
 }
 ```
 
-#### 7.2.6 Danses 
+#### 7.2.5 Danses 
 Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’utiliser au maximum les différents mouvements possibles d’Elisa-3, tout en étant visuellement artistique. Voici deux schémas afin de mieux comprendre les pas de danse effectués par les robots.
 
 Danse 1:
@@ -261,9 +261,9 @@ Danse 1:
 Danse 2:
  <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/dance_2_p1.png"
  alt="Danse 2" title="Danse 2" align="center" />
-Pour la danse 2, le schéma illustre seulement la première moitié de la danse. La deuxième partie est symétrique à la première et effectue les mêmes mouvements mais dans le sens inverse.
+Pour la danse 2, le schéma illustre seulement la première moitié de la danse. La deuxième partie est symétrique à la première: le robot effectue les mêmes mouvements mais dans le sens inverse.
 
-Ici de suite vous trouvé le code utilisé pour implementer les deux danses:
+Ci-dessous le code qui implémentent les deux danses:
 
 ```C
 
