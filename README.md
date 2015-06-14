@@ -158,7 +158,260 @@ Finalement, nous avons dû enlever la communication locale du projet final, car 
 
 #### 7.2.6 Danses 
 Nous avons choisi d’implémenter deux danses pour ce projet. L’objectif des danses est d’utiliser au maximum les différents mouvements possibles d’Elisa-3, tout en étant visuellement artistique. Voici deux schémas afin de mieux comprendre les pas de danse effectués par les robots.
+Danse 1:
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/dance_1.png"
+ alt="Danse 1" title="Danse 1" align="center" />
+ 
+Danse 2:
+ <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/dance_2_p1.png"
+ alt="Danse 2" title="Danse 2" align="center" />
+Pour la danse 2, le schéma illustre seulement la première moitié de la danse. La deuxième partie est symétrique à la première et effectue les mêmes mouvements mais dans le sens inverse.
 
+Ici de suite vous trouvé le code utilisé pour implementer les deux danses:
+
+```C
+
+unsigned int dance_1_state = 0;
+void dance_1() {
+
+  switch (dance_1_state) {
+    case 0:
+      enableObstacleAvoidance();
+
+      setLEDcolor(255, 0, 57); //turquoise
+      rotate(0, HIGH_SPEED);
+
+      start = getTime100MicroSec();
+      dance_1_state = 1;
+      break;
+    case 1:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_4_SEC) {
+        start = currentTime;
+        setLEDcolor(0, 63, 255); //dark yellow
+        turnOnGreenLeds();
+        setRightSpeed(NORMAL_SPEED);
+        setLeftSpeed(NORMAL_SPEED);
+        dance_1_state = 2;
+
+      }
+      break;
+    case 2:
+
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        turnOffGreenLeds();
+        start = currentTime;
+        setLEDcolor(171, 0, 255); //green
+        rotate(1, HIGH_SPEED);
+
+        dance_1_state = 3;
+
+      }
+      break;
+    case 3:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_4_SEC) {
+        start = currentTime;
+        setLEDcolor(240, 255, 0); //blue
+        turnOnGreenLeds();
+        setRightSpeed(-NORMAL_SPEED);
+        setLeftSpeed(-NORMAL_SPEED);
+        dance_1_state = 4;
+
+      }
+      break;
+    case 4:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        start = currentTime;
+        setLEDcolor(0, 159, 255); //dark orange
+        turnOffGreenLeds();
+        setLeftSpeed(0);
+        setRightSpeed(0);
+        turnOnGreenLeds();
+        dance_1_state = 5;
+
+      }
+    case 5:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_5_SEC) {
+        start = currentTime;
+        robotState = BASE_MODE;
+        turnOffGreenLeds();
+        dance_1_state = 0;
+        startDance = currentTime;
+        base_state = 0;
+
+      }
+      break;
+  }
+}
+
+unsigned int dance_2_state = 0;
+void dance_2() {
+
+  switch (dance_2_state) {
+    case 0:
+      enableObstacleAvoidance();
+      setLEDcolor(0, 255, 240);
+      turn(0, HIGH_SPEED);
+      start = getTime100MicroSec();
+      dance_2_state = 1;
+      break;
+    case 1:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(20, 255, 220);
+        turn(0, -HIGH_SPEED);
+        dance_2_state = 2;
+
+      }
+      break;
+    case 2:
+
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+
+        start = currentTime;
+        setLEDcolor(40, 255, 200);
+        turn(1, HIGH_SPEED);
+
+        dance_2_state = 3;
+
+      }
+      break;
+    case 3:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(60, 255, 180);
+        turn(1, -HIGH_SPEED);
+        dance_2_state = 4;
+
+      }
+      break;
+    case 4:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(80, 255, 160);
+        setLeftSpeed(NORMAL_SPEED);
+        setRightSpeed(NORMAL_SPEED);
+
+        dance_2_state = 5;
+
+      }
+      break;
+    case 5:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_2_SEC) {
+        start = currentTime;
+        setLEDcolor(100, 255, 140);
+        rotate(1, NORMAL_SPEED);
+        dance_2_state = 6;
+
+      }
+      break;
+    case 6:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(120, 255, 100);
+        turn(0, HIGH_SPEED);
+        dance_2_state = 7;
+
+      }
+      break;
+    case 7:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(140, 255, 60);
+        turn(0, -HIGH_SPEED);
+        dance_2_state = 8;
+
+      }
+      break;
+    case 8:
+
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+
+        start = currentTime;
+        setLEDcolor(160, 255, 40);
+        turn(1, HIGH_SPEED);
+
+        dance_2_state = 9;
+
+      }
+      break;
+    case 9:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(180, 255, 20);
+        turn(1, -HIGH_SPEED);
+        dance_2_state = 10;
+
+      }
+      break;
+    case 10:
+      currentTime = getTime100MicroSec();
+      if (currentTime - start > PAUSE_1_SEC) {
+        start = currentTime;
+        setLEDcolor(200, 255, 0);
+        setLeftSpeed(0);
+        setRightSpeed(0);
+
+        robotState = BASE_MODE;
+        dance_2_state = 0;
+        startDance = currentTime;
+        base_state = 0;
+      }
+      break;
+
+  }
+}
+```
+
+avec les methodes utilitarires de rotation et de "turn":
+
+```C
+
+//rotationDirection : 0 --> clockwise ; 1 --> cunterclokwise
+void rotate(int rotationDirection, unsigned int rotationSpeed) {
+  switch (rotationDirection) {
+
+    case 0:
+      setLeftSpeed(rotationSpeed);
+      setRightSpeed(- rotationSpeed);
+      break;
+    case 1:
+      setLeftSpeed(- rotationSpeed);
+      setRightSpeed(rotationSpeed);
+      break;
+  }
+}
+
+
+//turnDirection : 0 --> clockwise ; 1 --> cunterclokwise
+void turn(int turnDirection, unsigned int turnSpeed) {
+  switch (turnDirection) {
+
+    case 0:
+      setLeftSpeed(turnSpeed);
+      setRightSpeed(0);
+      break;
+    case 1:
+      setLeftSpeed(0);
+      setRightSpeed(turnSpeed);
+      break;
+  }
+}
+
+```
 
 ## <a name="place"></a>8. Mise en place finale
 
