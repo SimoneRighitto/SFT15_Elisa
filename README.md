@@ -26,7 +26,7 @@ Notre concept – détaillé par la suite – est le suivant : un des robots est
 
 Le projet décrit par la suite est en réalité une reprise d'un premier projet (réalisé par Marcel Sinniger, Dominique Jollien, Stéphane Maillard et Auriana Hug). Nous avons donc pu nous baser sur une première expérience. Toutefois, comme nous le verrons par la suite, nous avons fait face à de nouveaux challenges. 
 
-En outres, ce document explique les différents outils de programmation nécessaires pour travailler avec le robot Elisa-3. Les fonctionnalités imaginées dans notre scénario seront expliquées au niveau de leur mise en œuvre et de leur implémentation. 
+En outre, ce document explique les différents outils de programmation nécessaires pour travailler avec le robot Elisa-3. Les fonctionnalités imaginées dans notre scénario seront expliquées au niveau de leur mise en œuvre et de leur implémentation. 
 
 
 ## <a name="obj"></a>2. Objectifs de ce projet
@@ -50,7 +50,7 @@ Pour se déplacer et tourner, le robot Elisa-3 possède deux roues indépendante
 Elisa-3 est équipé de 8 émetteurs infrarouges couplés avec des senseurs répartis sur le côté de l’appareil. Ils permettent notamment la détection d’objets à proximité (*object avoidance*), ainsi que l’évitement de chutes lors de l’approche d’un bord de table (*cliff avoidance*). 
 
 ### 3.3 Communication avec un ordinateur 
-Le robot possède aussi une antenne RF afin de communiquer avec un ordinateur. Il envoie les informations de ses capteurs et peut recevoir des instructions. En outres, le robot est équipé d’un processeur ATMEL ATmega2560 compatible Arduino. Un port micro-USB permet la connexion à un ordinateur à l'aide d'un câble micro USB, afin de changer le code du robot. Un sélecteur à 8 positions est présent sur le PCB.  
+Le robot possède aussi une antenne RF afin de communiquer avec un ordinateur. Il envoie les informations de ses capteurs et peut recevoir des instructions. En outre, le robot est équipé d’un processeur ATMEL ATmega2560 compatible Arduino. Un port micro-USB permet la connexion à un ordinateur à l'aide d'un câble micro USB, afin de changer le code du robot. Un sélecteur à 8 positions est présent sur le PCB.  
 
 ### 3.4 Communication avec un autre robot
 Ils peuvent également communiquer des informations avec un robot semblable, de la même manière qu'avec l'ordinateur. Il s'est révélé par la suite que cette fonctionnalité était peu fiable.
@@ -81,7 +81,7 @@ Pour ce projet, nous avons utilisé :
 
 ## <a name="envi"></a>6. Environnement de développement
 
-GCtronic propose plusieurs IDE pour programmer les robots. Le seul que nous avons pu utiliser est [Arduino](http://www.arduino.cc/). Malheureusement, la majorité des exemples de code sur le site du fournisseur ont été conçus pour AVR Studio. En outres, la traduction du code est pénible, car la librairie n’est pas complétement la même pour les deux IDE. Ainsi, la librairie "Avancée" doit être utilisée avec AVR Studio. Il s'est avéré impossible à la faire fonctionner en utilisant Arduino
+GCtronic propose plusieurs IDE pour programmer les robots. Le seul que nous avons pu utiliser est [Arduino](http://www.arduino.cc/). Malheureusement, la majorité des exemples de code sur le site du fournisseur ont été conçus pour AVR Studio. En outre, la traduction du code est pénible, car la librairie n’est pas complétement la même pour les deux IDE. Ainsi, la librairie "Avancée" doit être utilisée avec AVR Studio. Il s'est avéré impossible à la faire fonctionner en utilisant Arduino
 
 ### <a name="install"></a>6.1 Installation du logiciel Arduino 
 Cette page web du fournisseur explique comment installer Arduino : http://www.gctronic.com/doc/index.php/Elisa-3#Arduino_IDE_project  
@@ -678,7 +678,7 @@ Un autre problème notoire a été la difficulté d'automatiser les tests, c'est
 
 Malgré tout cela, nous avons réussi à réaliser le projet en remplissant les objectifs du cahier des charges. Il est en effet possible aux robots d'effectuer des danses que nous avons prédéfinies. Afin que les spectateurs profitent au maximum des effets visuels du robot, nous avons varié les couleurs de manière intelligente et ludique pour procurer un rendu des plus attrayants. Une des fonctionnalités phares que nous avons implémentée étant le rechargement autonome: lorsqu'un robot atteint un seuil prédéfini de batterie faible, il cherche une station de recharge en suivant une des lignes situées sur le sol. Si cette station est déjà occupée, il ne force pas le passage, mais au contraire  il se retire de manière intelligente et se met à la recherche d'une autre base libre. Cette fonctionnalité est extrêmement utile car dans le contexte d'un musée, il serait très pénible et inconvenant pour la personne responsable de devoir recharger les robots individuellements chaque fois qu'ils en ont besoin. Il faudrait presque un employé à temps complet chargé de cette mission. Un autre atout de notre projet tient dans le fait que l'on peut utiliser un capteur digital (le Touchrotation) permettant à un visiteur - en rapprochant sa main - de donner l'ordre aux robots de démarrer, plutôt que de devoir faire cela de manière moins ludique à l'aide d'un ordinateur par exemple. Le visiteur n'est donc pas seulement passif, mais est un acteur à part entière de l'exposition, ce qui est idéal dans le cadre d'un musée aussi ludique que la Maison d'Ailleurs.
 
-En conclusion, ce projet nous a permis de nous familiariser avec les robots Elisa-3, de découvrir ses forces mais aussi ses faiblesses. Finalement, nous sommes arrivés à développer des cas d'utilisation fonctionnels et qui correspondent aux attentes de la Maison d'Ailleurs. En outres, nous sommes fiers d'avoir pu fournir un tel résultat d'après les difficultés rencontrées et l'évolution constante du concept.
+En conclusion, ce projet nous a permis de nous familiariser avec les robots Elisa-3, de découvrir ses forces mais aussi ses faiblesses. Finalement, nous sommes arrivés à développer des cas d'utilisation fonctionnels et qui correspondent aux attentes de la Maison d'Ailleurs. En outre, nous sommes fiers d'avoir pu fournir un tel résultat d'après les difficultés rencontrées et l'évolution constante du concept.
 
 L'année du robot est une année spéciale et nous sommes confiants dans le fait que les Elisa-3 apporteront leur pierre à l'édifice de l'exposition Portrait-Robot.
 
