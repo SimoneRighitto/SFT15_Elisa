@@ -15,8 +15,7 @@
 7. [Fonctionnalités et implémentation](#concept)
 8. [Mise en place finale](#place)
 9. [Conclusion](#conlusion)
-10. [Liens](#liens)
-11. [Remerciements](#thanks)
+10. [Remerciements](#thanks)
 
 ## <a name="intro"></a>1. Introduction
 
@@ -513,10 +512,9 @@ void turn(int turnDirection, unsigned int turnSpeed) {
 ## <a name="place"></a>8. Mise en place finale
 
 ### 8.1 Arène
-*ici Auriana*
+L'arène est un bon exemple de démonstration de l'évolution constante du projet. En effet, le concept ayant déjà évolué avec le fait qu'il est passé d'un groupe d'étudiants à un autre, il a aussi subi d'autres changements notoires après la visite du directeur de musée, M. Patrick Gyger. 
 
-
-#### Schéma de l'arène
+#### 8.1.1 L'arène initialement prévue
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/schema_areneB.jpg"
  alt="Arene" title="Arene" align="center" />
 
@@ -525,27 +523,34 @@ void turn(int turnDirection, unsigned int turnSpeed) {
 - Surface: blanche, aimantée et lisse
 - Disposition: verticale
 - Forme: rectangle avec des bords (barrières)
+- 
+#### 8.1.2 L'arène finale
+Malheureusment nous n'avons pas de schéma pour l'environnement final du projet. Toutefois, nous pouvons signaler qu'une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-dessous l'illustre.
 
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
+ alt="Dégradé" title="Degrade" align="center" />
+ 
+- Pour 7 robots (2 en réserve)
+- Dimensions: env 70 x 55 cm (à vérifier)
+- Surface: noire, aimantée et lisse
+- Disposition: penchée (angle d'environ 30°, les bases en bas)
+- Forme: rectangle avec des bords blancs
 
+Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre!
+ 
 ## <a name="conlusion"></a>9. Conclusion
-*ici Auriana*
 
-*Début Arnaud (à modifier ou déplacer si nécessaire)*
-Durant ce projet nous avons rencontré de nombreuses difficultés : avec la nouvelle bibliothèque utilisée qui malheureusement ne possède pas de documentation officielle développée, et qui de plus possède un certain nombre de comportements étranges, par exemple une limitation apparente ne permettant pas d'envoyer des commandes à plus de quatre robots de manière simultanée. La compréhension et l'utilisation de cette bibliothèque nous a posé de nombreux problèmes et la complexité du code contenu a rendu très compliquée la résolution de bugs et la modification de certaines fonctionnalités.
-Un autre problème est la difficulté d'automatiser les tests, c'est-à-dire que nous sommes obligés de transférer le code sur chaque robot individuellement à chaque modification importante, et comme nous en possédons un certain nombre cela s'avère très chronophage.
+Durant ce projet, nous avons rencontré de nombreuses difficultés. La nouvelle bibliothèque utilisée ne possédait malheureusement pas de documentation officielle développée- De plus, elle produisait un certain nombre de comportements étranges, par exemple une limitation apparente ne permettant pas d'envoyer des commandes à plus de quatre robots de manière simultanée. La compréhension et l'utilisation de cette bibliothèque nous a donc posé de nombreux problèmes et la complexité du code contenu a rendu très compliquée la résolution de bugs et la modification de certaines fonctionnalités.
+Un autre problème notoire a été la difficulté d'automatiser les tests, c'est-à-dire que nous avons été obligés de transférer le code sur chaque robot individuellement à chaque modification importante, et comme nous en possédions une petite dizaine, cela s'est avéré très chronophage.
 
-Malgré ces nombreuses difficultés, nous avons réussi à réaliser le projet en remplissant les objectifs du cahier des charges. Il est possible aux robots d'effectuer des danses que nous avons prédéfinies, et pour que les spectateurs profitent au maximum des effets visuels nous avons varié les couleurs de manière intelligente et ludique pour procurer un rendu des plus attrayants. Une des fonctionnalités phares que nous avons implémentée étant le rechargement autonome : lorsqu'un robot atteint un seuil prédéfinit de batterie faible il cherche une station de recharge en suivant une des lignes situées sur le sol, si cette station est déjà occupée il ne force pas le passage, mais au contraire de manière intelligente il se retire et se met à la recherche d'une autre base libre. Cette fonctionnalité est extrêmement utile car dans le contexte d'un musée il serait très pénible et inconvenant pour la personne responsable de devoir recharger les robots individuellements chaque fois qu'ils sont déchargés, il faudrait presque un employé à temps complet chargé de cette mission. Un autre atout de notre projet tient dans le fait que l'on puisse utiliser un capteur digital permettant à un visiteur en rapprochant sa main de donner l'ordre aux robots de démarrer, plutôt que de devoir faire cela de manière moins ludique à l'aide d'un ordinateur. Le visiteur n'est donc pas seulement passif, mais est un acteur à part entière de l'exposition. 
+Malgré tout cela, nous avons réussi à réaliser le projet en remplissant les objectifs du cahier des charges. Il est en effet possible aux robots d'effectuer des danses que nous avons prédéfinies. Afin que les spectateurs profitent au maximum des effets visuels du robot, nous avons varié les couleurs de manière intelligente et ludique pour procurer un rendu des plus attrayants. Une des fonctionnalités phares que nous avons implémentée étant le rechargement autonome: lorsqu'un robot atteint un seuil prédéfini de batterie faible, il cherche une station de recharge en suivant une des lignes situées sur le sol. Si cette station est déjà occupée, il ne force pas le passage, mais au contraire  il se retire de manière intelligente et se met à la recherche d'une autre base libre. Cette fonctionnalité est extrêmement utile car dans le contexte d'un musée, il serait très pénible et inconvenant pour la personne responsable de devoir recharger les robots individuellements chaque fois qu'ils en ont besoin. Il faudrait presque un employé à temps complet chargé de cette mission. Un autre atout de notre projet tient dans le fait que l'on peut utiliser un capteur digital (le Touchrotation) permettant à un visiteur - en rapprochant sa main - de donner l'ordre aux robots de démarrer, plutôt que de devoir faire cela de manière moins ludique à l'aide d'un ordinateur par exemple. Le visiteur n'est donc pas seulement passif, mais est un acteur à part entière de l'exposition, ce qui est idéal dans le cadre d'un musée aussi ludique que la Maison d'Ailleurs.
 
-En conclusion, ce projet nous a permis de nous familiariser avec les robots Elisa-3, de voir ses forces mais aussi ses faiblesses et au final nous sommes arrivés à développer des cas d'utilisation fonctionnels et qui correspondent aux attentes de la Maison d'Ailleurs. L'année du robot est une année spéciale et nous sommes confiants dans le fait que les Elisa-3 apporteront leur pierre à l'édifice de l'exposition Portrait-Robot.
-*Fin Arnaud*
+En conclusion, ce projet nous a permis de nous familiariser avec les robots Elisa-3, de découvrir ses forces mais aussi ses faiblesses. Finalement, nous sommes arrivés à développer des cas d'utilisation fonctionnels et qui correspondent aux attentes de la Maison d'Ailleurs. En outres, nous sommes fiers d'avoir pu fournir un tel résultat d'après les difficultés rencontrées et l'évolution constante du concept.
 
-
-## <a name="liens"></a>10. Liens
-
-- [GCtronic, Elisa-3](http://www.gctronic.com/doc/index.php/Elisa-3)
+L'année du robot est une année spéciale et nous sommes confiants dans le fait que les Elisa-3 apporteront leur pierre à l'édifice de l'exposition Portrait-Robot.
 
 
-## <a name="thanks"></a>11. Remerciements
+## <a name="thanks"></a>10. Remerciements
 Nous tenons à remercier tout particulièrement Hector Satizabal Mejia  pour nous avoir aidé dans ce projet. Le soutien moral, le matériel et le code qu'il nous a fournis ont été un élément clé dans la réussite de ce projet.
 
 Un grand merci aussi à l'équipe qui a travaillé avant nous sur le projet. Ils nous ont fourni une documentation très complète qui nous a beaucoup aidé dans le démarrage de ce travail et que nous avons largement repris ici. 
