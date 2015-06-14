@@ -114,17 +114,150 @@ Pendant ce temps, les robots contrôlent constamment leur niveau de batterie. Si
 
 ### 7.2 Implémentation
 
-#### 7.2.1 Écoute du signal de démarrage  ((( *ici FRED * )))
+#### 7.2.1 Écoute du signal de démarrage
 Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. Cependant, nous avons rencontré un certain nombre de difficultés. Une variable nommée `NUMBER_ROBOTS` ne changeait apparemment pas le nombre de robots auxquels nous pouvions transmettre de l’information. En effet, bien que nous ayons modifié la valeur à 5 ou 6, nous ne pouvions communiquer qu'avec 4 d’entre eux. Après de nombreux tests effectués à d'autres endroits dans le code, le problème persistait,  même en essayant de modifier la bibliothèque fournie. Nous avons fini par déduire que le nombre de robots ne peut être qu'une puissance de 2. En effet, en initialisant la variable `NUMBER_ROBOTS` à 8, nous avons réussi à faire fonctionner plus de 4 robots.
 
-*A ajouter*
-- détection proximité
-- passage en mode recherche de la ligne (rechargement) automatique si niveau de batterie trop faible 
+Dans son état initial, le robot attends que l'antenne lui envoie une commande. Ensuite, tout les robots passent au bleu puis un devient rouge pour démarrer la contamination. A ce stade, les robots bleus attendent de détecter qu'un autre robot passe à côté avant de démarrer. Voici le code vérifiant la proximité :
+```C
+boolean checkNearbyObjects() {
+  unsigned int proximityResultFront = proximityResultLinear[0] + proximityResultLinear[1] + proximityResultLinear[7]   ;
+  unsigned int proximityResultBack = proximityResultLinear[3] + proximityResultLinear[4] + proximityResultLinear[5]   ;
+
+  if (proximityResultFront >= FRONT_PROX || proximityResultBack >= BACK_PROX) {
+    return true;
+  }
+  else if ( proximityResultLinear[2] > LATERAL_PROX || proximityResultLinear [6] > LATERAL_PROX) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+```
+Dans tous les états du robot, ce dernier vérifie son niveau de batterie afin de savoir quand il doit aller se recharger. Si le niveau minimal est atteint, il part à la recherche d'une ligne.
+```C
+const unsigned int BATTERY_LEVEL_STOP_CHARGING = 950;
+const unsigned int BATTERY_LEVEL_START_CHARGING = 650;
+void updateBatteryLevel() {
+  if (getTime100MicroSec() > (batteryStart + PAUSE_5_SEC)) {    // update the battery level every 5 seconds
+    readBatteryLevel();
+    batteryStart = getTime100MicroSec();
+
+    if (batteryLevel <= BATTERY_LEVEL_START_CHARGING) {
+      //the robot must now go to charging state
+      robotState = LOW_BATTERY;
+    }
+  }
+}
+```
+
 
 #### 7.2.2 Suivi des lignes et rechargement
-*Fred*
-- code de Fred (explications et code)
-- nouveau code (explications et code)
+Pour le suivi des lignes, nous avons d'abords repris le code fait par le groupe précédent, puis nous avons remarqué quelques problèmes lié au fait que nous utilisions leur code avec une nouvelle version de la librarie prévue pour nos robots. Notamment, ces derniers ne trouvaient plus la ligne à tout les coups et ne pouvaient donc pas aller se recharger. Nous avons donc décider de changer les valeurs fixes du noir et du blanc par des valeurs calculées au lancement du robot.
+```C
+unsigned int line_in = 0, line_out = 0;
+line_out = proximityResult[8];
+line_in = line_out-50;
+```
+Avec ceci, les robots arrivaient à trouver la ligne plus facilement et ne se trompaient plus.
+Ensuite, comme nous faisons désormais tourner les robots sur une surface aimantée, nous avons remarqué qu'il était très difficile de les faire se coller au chargeur, en effet il y avait toujours une des deux pins de rechargement qui ne touchait pas le chargeur. Nous avons donc ajouter dans le code une partie permettant au robot de faire des mouvements de repositionnement.
+```C
+if (proximityResult[1] >= 700 || proximityResult[7] >= 700) {
+   if ((getTime100MicroSec()-counterPerso) >= PAUSE_1_SEC) {
+     counterPerso = getTime100MicroSec();
+     if (testBool == 1) {testBool = 0;}
+     else {testBool = 1;}
+   }
+   
+   if (testBool == 1) {
+     setRightSpeed(15);
+     setLeftSpeed(-5);
+   } else {
+     setRightSpeed(-5);
+     setLeftSpeed(15);
+   }
+}
+```
+Voici le premier code terminé permettant de suivre la ligne :
+```C
+if (proximityResult[1] >= 700 || proximityResult[7] >= 700) {
+   if ((getTime100MicroSec()-counterPerso) >= PAUSE_1_SEC) {
+      counterPerso = getTime100MicroSec();
+      if (testBool == 1) {testBool = 0;}
+      else {testBool = 1;}
+   }
+
+   if (testBool == 1) {
+      setRightSpeed(15);
+      setLeftSpeed(-5);
+   } else {
+      setRightSpeed(-5);
+      setLeftSpeed(15);
+   }
+}
+else if(proximityResult[9]>line_out) {	// center left is leaving the line => turn right
+   setLeftSpeed(15);
+   setRightSpeed(-5);
+} else if(proximityResult[10]>line_out) {	// center right is leaving the lnie => turn left
+   setLeftSpeed(-5);
+   setRightSpeed(15);
+} else if(proximityResult[8]<line_out && proximityResult[9]>line_out && proximityResult[10]>line_out && proximityResult[11]>line_out) {	// left ground is the only within the black line => turn left
+   setLeftSpeed(-10);
+   setRightSpeed(15);
+} else if(proximityResult[11]<line_out && proximityResult[8]>line_out && proximityResult[9]>line_out && proximityResult[10]>line_out) {	// right ground is the only within the black line => turn right
+   setLeftSpeed(15);
+   setRightSpeed(-10);
+} else {
+   setRightSpeed(15);
+   setLeftSpeed(15);
+}
+```
+Puis les idées ont changé, nous ne travaillons désormais plus avec des lignes bien tracées, mais avec des lignes aux bords flou. Nous avons donc du refaire un nouveau code pour lequel nous avons eut l'aide de l'assistant du cours et qui utilise un algorithme nommé "Braitenberg" permettant de suivre facilement des lignes floues en injectant des valeurs un peu modifiées de certains capteurs directement dans les vitesses des roues.
+```C
+void braitenbergLineFollower() {
+
+ front_diff = ((int)proximityResult[9] - (int)proximityResult[10]) >> 5;
+
+ setGreenLed(4, 0);
+ //-------------------------------------------------------------------------------------------
+ if (inLine) {
+   if ( (proximityResult[9] < LINE_OUT_THR_BK) && (proximityResult[10] < LINE_OUT_THR_BK) ) {
+     inLine = false;
+     setGreenLed(0, 1);
+     enableObstacleAvoidance();
+   }
+ }
+ else {
+   if ( (proximityResult[9] > LINE_IN_THR_BK) || (proximityResult[10] > LINE_IN_THR_BK) ) {
+     inLine = true;
+     setGreenLed(0, 0);
+     disableObstacleAvoidance();
+   }
+ }
+ //-------------------------------------------------------------------------------------------
+ if ( !inLine && (proximityResult[8] > LINE_IN_THR_BK) && (proximityResult[11] > LINE_IN_THR_BK) ) {  //special case... lateral sensors on the line: turn 90 degrees
+   if (accY > 0) {      // check the slope and turn the robot to go down
+     setLeftSpeed(15);
+     setRightSpeed(-15);
+     setGreenLed(1, 1);
+     setGreenLed(7, 0);
+   }
+   else {
+     setLeftSpeed(-15);
+     setRightSpeed(15);
+     setGreenLed(1, 0);
+     setGreenLed(7, 1);
+   }
+   startTempAction(PAUSE_500_MSEC);
+ }
+ else {
+   setGreenLed(1, 0);
+   setGreenLed(7, 0);
+   setLeftSpeed(CONSTANT_SPEED_FOLLOW - front_diff);
+   setRightSpeed(CONSTANT_SPEED_FOLLOW + front_diff);
+ }
+}
+```
 
 Pour la partie rechargement, le comportement du robot est le suivant.
 Une fois connecté à la station de rechargement, le robot contrôle en permanence s'il reste en contact avec le chargeur. Si une déconnexion survient, le robot contrôle si le niveau de sa batterie est suffisamment haut pour retourner dans le spectacle ou non. Si oui, il recule et il se remet en jeu. Si non, il essaiera de se reconnecter à la station.
