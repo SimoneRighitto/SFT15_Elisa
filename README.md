@@ -314,7 +314,7 @@ case IN_CHARGER:
 #### 7.2.3 Communication entre les robots
 A plusieurs reprises, nous avons testé la communication locale entre robots. Après avoir résolu différents problèmes initiaux liés à la librairie, nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer ou recevoir des messages.
 
-```
+```C
 void sendToRobots(unsigned char toSend) {
   if (irCommDataSent() == 1) {
     irCommSendData(toSend);
@@ -343,7 +343,7 @@ Le « base mode » est le comportement de base du robot. Celui-ci est activé qu
 Il doit avancer de manière constante en évitant les obstacles qu’il trouve. De plus, il change sa couleur de manière aléatoire toutes les 5 secondes. Enfin, chaque 40 secondes il effectue une des danses prédéfinies.
 Voici le code source qui permet d’implémenter ce « base mode » : 
 
-```
+```C
 unsigned long int startChangeColor = 0;
 unsigned int randDance = 0;
 
@@ -398,7 +398,7 @@ Pour la danse 2, le schéma illustre seulement la première moitié de la danse.
 
 Ci-dessous le code qui implémentent les deux danses:
 
-```
+```C
 
 unsigned int dance_1_state = 0;
 void dance_1() {
