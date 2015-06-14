@@ -126,6 +126,58 @@ Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. C
 - code de Fred (explications et code)
 - nouveau code (explications et code)
 
+Pour la partie rechargement le comportement du robot est le suivant:
+Une fois connecté à la station de rechargement, le robot contrôle en permanence si il reste en contact avec le chargeur. Si une déconnexion survient, alors le robot contrôle si le niveau de sa batterie est suffisamment haut pour retourner dans le spectacle ou non. Si oui, il recule et il se remet en jeux. Si non il essayera de se reconnecter à la station.
+
+Voici le code qui contrôle l'effective connexion avec la station de rechargement :
+
+```C
+unsigned int chargeContactDetected = 0;
+boolean charging() {
+  if (batteryLevel > BATTERY_LEVEL_STOP_CHARGING) {
+    return false;
+  }
+  else if (CHARGE_ON) {
+    chargeContactDetected++;
+    if (chargeContactDetected > 20) {
+      return true;
+    }
+    return false;
+  }
+  else {
+    chargeContactDetected = 0;
+    return false;
+  }
+}
+```
+
+Et la routine effectué par le robot dans le cas ou il est connecté avec le chargeur:
+
+```C
+case IN_CHARGER:
+
+
+          setLEDcolor(255, 0, 255);
+
+          setLeftSpeed(0);
+          setRightSpeed(0);
+
+          if (!charging()) {
+
+            if (batteryLevel < BATTERY_LEVEL_MORE_CHARGING) { //we need more charging
+              setLEDcolor(255, 255, 0);
+              previouslyCharging = true;
+              robotState = LOW_BATTERY;
+            }
+            else {
+              previouslyCharging = false;
+              robotState = GOING_OFF_CHARGER;
+            }
+          }
+
+          break;
+```
+
 #### 7.2.4 Communication entre les robots
 A plusieurs reprises, nous avons testé la communication locale entre robots. Après avoir résolu différents problèmes initiaux liés à la librairie, nous avons réussi à échanger des messages entre les robots. Voici les deux fonctions développées afin de pouvoir envoyer ou recevoir des messages.
 
