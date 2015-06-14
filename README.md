@@ -16,6 +16,7 @@
 8. [Mise en place finale](#place)
 9. [Conclusion](#conlusion)
 10. [Liens](#liens)
+11. [Remerciements](#thanks)
 
 ## <a name="intro"></a>1. Introduction
 
@@ -126,10 +127,10 @@ Nous avons tenté de communiquer avec plus de 4 robots à l'aide de l'antenne. C
 - code de Fred (explications et code)
 - nouveau code (explications et code)
 
-Pour la partie rechargement le comportement du robot est le suivant:
-Une fois connecté à la station de rechargement, le robot contrôle en permanence si il reste en contact avec le chargeur. Si une déconnexion survient, alors le robot contrôle si le niveau de sa batterie est suffisamment haut pour retourner dans le spectacle ou non. Si oui, il recule et il se remet en jeux. Si non il essayera de se reconnecter à la station.
+Pour la partie rechargement, le comportement du robot est le suivant.
+Une fois connecté à la station de rechargement, le robot contrôle en permanence s'il reste en contact avec le chargeur. Si une déconnexion survient, le robot contrôle si le niveau de sa batterie est suffisamment haut pour retourner dans le spectacle ou non. Si oui, il recule et il se remet en jeu. Si non, il essaiera de se reconnecter à la station.
 
-Voici le code qui contrôle l'effective connexion avec la station de rechargement :
+Voici le code qui contrôle la connexion avec la station de rechargement:
 
 ```C
 unsigned int chargeContactDetected = 0;
@@ -151,7 +152,7 @@ boolean charging() {
 }
 ```
 
-Et la routine effectué par le robot dans le cas ou il est connecté avec le chargeur:
+Et la routine effectuée par le robot dans le cas où il est connecté avec le chargeur:
 
 ```C
 case IN_CHARGER:
@@ -544,8 +545,8 @@ En conclusion, ce projet nous a permis de nous familiariser avec les robots Elis
 - [GCtronic, Elisa-3](http://www.gctronic.com/doc/index.php/Elisa-3)
 
 
-## <a name="conlusion"></a>11. Special thanks !
-Un grand merci à Satizabal Mejia Hector Fabio pour nous avoir aidé dans ce projet. Le soutien morale, matériel et logiciel que tu nous as fourni a été très important ;-)
+## <a name="thanks"></a>11. Remerciements
+Nous tenons à remercie tout particulièrement Satizabal Mejia Hector Fabio pour nous avoir aidé dans ce projet. Le soutien moral, le matériel et le code qu'il nous a fournis ont été un élément clé dans la réussite de ce projet.
 
 Thank you very much !
 
