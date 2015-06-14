@@ -54,13 +54,13 @@ Elisa-3 est équipé de 8 émetteurs infrarouges couplés avec des senseurs rép
 Le robot possède aussi une antenne RF afin de communiquer avec un ordinateur. Il envoie les informations de ses capteurs et peut recevoir des instructions. En outres, le robot est équipé d’un processeur ATMEL ATmega2560 compatible Arduino. Un port micro-USB permet la connexion à un ordinateur à l'aide d'un câble micro USB, afin de changer le code du robot. Un sélecteur à 8 positions est présent sur le PCB.  
 
 ### 3.4 Communication avec un autre robot
-Ils peuvent également communiquer des informations avec un robot semblable. 
+Ils peuvent également communiquer des informations avec un robot semblable, de la même manière qu'avec l'ordinateur. Il s'est révélé par la suite que cette fonctionnalité était peu fiable.
 
 ### 3.5 Couleurs 
 Une led RGB centrale permet au robot d’afficher un large choix de couleurs sur le dessus du l’appareil. Elisa-3 dispose aussi de huit leds vertes sur le côté.
 
 ### 3.6 Batterie 
-Une batterie équipe le robot. Elle peut être chargée soit en le branchant avec un câble micro USB à l'ordinateur, soit en positionnant les deux contacts dorés sur une station de rechargement adaptée. Lors du rechargement, une petite led rouge frontale s'allume.
+Une batterie équipe le robot, grâce à elle Elisa-3 a une auotonomie de 3 heures. Elle peut être chargée soit en le branchant avec un câble micro USB à l'ordinateur, soit en positionnant les deux contacts dorés sur une station de rechargement adaptée. Lors du rechargement, une petite led rouge frontale s'allume.
 
 
 ## <a name="doc"></a>4. Documentation officielle
@@ -77,7 +77,7 @@ Pour ce projet, nous avons utilisé :
 - 3 bases de recharges (avec leur câble) 
 - 1 environnement (l’arène) 
 - Phidget Touchrotation 1016
-- Raspberry Pie
+- Rapsberry Pi
 
 
 ## <a name="envi"></a>6. Environnement de développement
@@ -546,9 +546,13 @@ En conclusion, ce projet nous a permis de nous familiariser avec les robots Elis
 
 
 ## <a name="thanks"></a>11. Remerciements
-Nous tenons à remercie tout particulièrement Satizabal Mejia Hector Fabio pour nous avoir aidé dans ce projet. Le soutien moral, le matériel et le code qu'il nous a fournis ont été un élément clé dans la réussite de ce projet.
+Nous tenons à remercier tout particulièrement Hector Satizabal Mejia  pour nous avoir aidé dans ce projet. Le soutien moral, le matériel et le code qu'il nous a fournis ont été un élément clé dans la réussite de ce projet.
 
-Thank you very much !
+Un grand merci aussi à l'équipe qui a travaillé avant nous sur le projet. Ils nous ont fourni une documentation très complète qui nous a beaucoup aidé dans le démarrage de ce travail et que nous avons largement repris ici. 
+
+Nous remercions également le professeur M. Andres Perez-Uribe qui était toujours à notre écoute et nous prodiguait de bons conseils, tout en nous laissant une grande liberté dans ce projet. Merci pour votre confiance !
+
+A tous, un grand merci!
 
 
 
