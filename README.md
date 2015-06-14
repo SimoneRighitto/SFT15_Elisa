@@ -544,6 +544,10 @@ En conclusion, ce projet nous a permis de nous familiariser avec les robots Elis
 - [GCtronic, Elisa-3](http://www.gctronic.com/doc/index.php/Elisa-3)
 
 
+## <a name="conlusion"></a>11. Special thanks !
+Un grand merci à Satizabal Mejia Hector Fabio pour nous avoir aidé dans ce projet. Le soutien morale, matériel et logiciel que tu nous as fourni a été très important ;-)
+
+Thank you very much !
 
 
 
