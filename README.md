@@ -206,11 +206,11 @@ Finalement, nous avons dû enlever la communication locale du projet final, car 
 
 
 #### 7.2.4 Base mode
-Le « base mode » est le comportement de base du robot. Ceci est activé quand un robot en attende de démarrer son spectacle entre en contact avec un robot qui danse. Son comportement est assez simple :
-Il doit avancer de manière constante en évitant les obstacles qu’il trouve. De plus il va changer sa couleur de manière aléatoire toutes les 5 secondes. Enfin, toutes les 40 secondes il va effectuer une des pas de danse prédéfini.
+Le « base mode » est le comportement de base du robot. Celui-ci est activé quand un robot en attente de démarrer son spectacle entre en contact avec un robot qui danse. Son comportement est assez simple :
+Il doit avancer de manière constante en évitant les obstacles qu’il trouve. De plus, il change sa couleur de manière aléatoire toutes les 5 secondes. Enfin, chaque 40 secondes il effectue une des danses prédéfinies.
 Voici le code source qui permet d’implémenter ce « base mode » : 
 
-```C
+```
 unsigned long int startChangeColor = 0;
 unsigned int randDance = 0;
 
@@ -265,7 +265,7 @@ Pour la danse 2, le schéma illustre seulement la première moitié de la danse.
 
 Ci-dessous le code qui implémentent les deux danses:
 
-```C
+```
 
 unsigned int dance_1_state = 0;
 void dance_1() {
@@ -472,7 +472,7 @@ void dance_2() {
 }
 ```
 
-avec les methodes utilitarires de rotation et de "turn":
+avec les methodes utilitaires de rotation et de "turn":
 
 ```C
 
