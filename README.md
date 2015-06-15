@@ -669,12 +669,12 @@ L'arène est un bon exemple de démonstration de l'évolution constante du proje
 - Disposition: penchée (angle d'environ 30°, les bases en bas)
 - Forme: rectangle avec des bords blancs
 
-Nous remarquons donc qu’une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-contre l'illustre. Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre! 
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
+ alt="Dégradé" title="Degrade" align="left" />
+ Nous remarquons donc qu’une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-contre l'illustre. Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre! 
  
 ## <a name="conlusion"></a>9. Conclusion
 
-<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
- alt="Dégradé" title="Degrade" align="right" />
 Durant ce projet, nous avons rencontré de nombreuses difficultés. La nouvelle bibliothèque utilisée ne possédait malheureusement pas de documentation officielle développée- De plus, elle produisait un certain nombre de comportements étranges, par exemple une limitation apparente ne permettant pas d'envoyer des commandes à plus de quatre robots de manière simultanée. La compréhension et l'utilisation de cette bibliothèque nous a donc posé de nombreux problèmes et la complexité du code contenu a rendu très compliquée la résolution de bugs et la modification de certaines fonctionnalités.
 Un autre problème notoire a été la difficulté d'automatiser les tests, c'est-à-dire que nous avons été obligés de transférer le code sur chaque robot individuellement à chaque modification importante, et comme nous en possédions une petite dizaine, cela s'est avéré très chronophage.
 
