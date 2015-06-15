@@ -38,10 +38,10 @@ Ainsi, nous pourrons réutiliser une partie du code déjà conçu lors du projet
 
 ## <a name="elisa"></a>3. Elisa-3
 
-<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/elisa3-one.jpg"
- alt="Elisa-3" title="Elisa-3" align="right" />
- 
 Ce petit robot est rond, mesure moins de 10cm de diamètre et possède de multiples senseurs et fonctionnalités. Nous allons les découvrir dans ce chapitre.
+
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/elisa3-one.jpg"
+ alt="Elisa-3" title="Elisa-3" align="center" />
 
 ### 3.1 Déplacement 
 Pour se déplacer et tourner, le robot Elisa-3 possède deux roues indépendantes, chacune étant couplée à son propre moteur DC.  De plus, un accéléromètre sur trois axes permet au robot de connaître son orientation dans l’espace. Le déplacement du robot et la charge sont indépendants de la gravité. Le robot travaille également à la verticale et à l'envers, grâce à ses aimants. Sa position peut être exploitée par le programme du robot afin de changer le comportement du robot, par exemple. 
@@ -644,36 +644,37 @@ void turn(int turnDirection, unsigned int turnSpeed) {
 
 ## <a name="place"></a>8. Mise en place finale
 
-### 8.1 Arène
 L'arène est un bon exemple de démonstration de l'évolution constante du projet. En effet, le concept ayant déjà évolué avec le fait qu'il est passé d'un groupe d'étudiants à un autre, il a aussi subi d'autres changements notoires après la visite du directeur de musée, M. Patrick Gyger. 
 
-#### 8.1.1 L'arène initialement prévue
+#### 8.1 L'arène initialement prévue
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/schema_areneB.jpg"
  alt="Arene" title="Arene" align="center" />
 
 - Pour 7 robots (2 en réserve)
+- 2 bases de rechargement
 - Dimensions: 65 x 55 cm 
 - Surface: blanche, aimantée et lisse
 - Disposition: verticale
 - Forme: rectangle avec des bords (barrières)
 
 
-#### 8.1.2 L'arène finale
-Malheureusement nous n'avons pas de schéma pour l'environnement final du projet. Toutefois, nous pouvons signaler qu'une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-dessous l'illustre.
-
-<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
- alt="Dégradé" title="Degrade" align="center" />
+#### 8.2 L'arène finale
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/schema_areneC.jpg"
+ alt="Arene2" title="Arene2" align="center" />
  
-- Pour 7 robots (2 en réserve)
+- Pour 8 robots (2 en réserve)
+- 3 bases de rechargement
 - Dimensions: env 70 x 55 cm (à vérifier)
 - Surface: noire, aimantée et lisse
 - Disposition: penchée (angle d'environ 30°, les bases en bas)
 - Forme: rectangle avec des bords blancs
 
-Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre!
+Nous remarquons donc qu’une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-contre l'illustre. Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre! 
  
 ## <a name="conlusion"></a>9. Conclusion
 
+<img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
+ alt="Dégradé" title="Degrade" align="right" />
 Durant ce projet, nous avons rencontré de nombreuses difficultés. La nouvelle bibliothèque utilisée ne possédait malheureusement pas de documentation officielle développée- De plus, elle produisait un certain nombre de comportements étranges, par exemple une limitation apparente ne permettant pas d'envoyer des commandes à plus de quatre robots de manière simultanée. La compréhension et l'utilisation de cette bibliothèque nous a donc posé de nombreux problèmes et la complexité du code contenu a rendu très compliquée la résolution de bugs et la modification de certaines fonctionnalités.
 Un autre problème notoire a été la difficulté d'automatiser les tests, c'est-à-dire que nous avons été obligés de transférer le code sur chaque robot individuellement à chaque modification importante, et comme nous en possédions une petite dizaine, cela s'est avéré très chronophage.
 
