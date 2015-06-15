@@ -669,9 +669,10 @@ L'arène est un bon exemple de démonstration de l'évolution constante du proje
 - Disposition: penchée (angle d'environ 30°, les bases en bas)
 - Forme: rectangle avec des bords blancs
 
+ Nous remarquons donc qu’une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-dessous l'illustre. Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre! 
+ 
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
- alt="Dégradé" title="Degrade" align="left" />
- Nous remarquons donc qu’une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-contre l'illustre. Mais la réalité sur le terrain est encore bien différente puisqu'il est possible que nous rencontrions d'autres problèmes sur place lors de l'installation. Affaire à suivre! 
+ alt="Dégradé" title="Degrade" align="center" />
  
 ## <a name="conlusion"></a>9. Conclusion
 
