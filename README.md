@@ -656,9 +656,10 @@ L'arène est un bon exemple de démonstration de l'évolution constante du proje
 - Surface: blanche, aimantée et lisse
 - Disposition: verticale
 - Forme: rectangle avec des bords (barrières)
-- 
+
+
 #### 8.1.2 L'arène finale
-Malheureusment nous n'avons pas de schéma pour l'environnement final du projet. Toutefois, nous pouvons signaler qu'une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-dessous l'illustre.
+Malheureusement nous n'avons pas de schéma pour l'environnement final du projet. Toutefois, nous pouvons signaler qu'une base supplémentaire a été placée, que le fond blanc est devenu noir, les lignes - par conséquent - blanches, et avec un dégradé. L'image ci-dessous l'illustre.
 
 <img src="https://github.com/SimoneRighitto/SFT15_Elisa/blob/master/img_doc/degrade.jpg"
  alt="Dégradé" title="Degrade" align="center" />
