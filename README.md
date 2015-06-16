@@ -696,4 +696,7 @@ Nous remercions également le professeur M. Andres Perez-Uribe qui était toujou
 A tous, un grand merci!
 
 
+Arnaud Desclouds, Auriana Hug, Simone Righitto & Frédéric Saam.
+
+
 
